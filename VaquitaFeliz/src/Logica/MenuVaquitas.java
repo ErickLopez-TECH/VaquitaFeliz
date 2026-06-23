@@ -9,5 +9,8 @@ package Logica;
  * @author triamus
  */
 public class MenuVaquitas {
+    public static void menuVaquitas(){
+        System.out.println("Listo vaquitas");
     
+}
 }
