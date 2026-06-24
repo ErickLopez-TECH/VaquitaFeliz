@@ -43,7 +43,7 @@ public class VaquitaFeliz {
             
             //Estructura de control y decision
             switch(opciones){
-                case 1: 
+                case 1: GestionVacas.gestionVacas();
                     break;
                 case 2:
                     break;
