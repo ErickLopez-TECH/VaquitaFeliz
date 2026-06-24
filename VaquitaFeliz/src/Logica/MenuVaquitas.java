@@ -10,7 +10,8 @@ package Logica;
  */
 public class MenuVaquitas {
     public static void menuVaquitas(){
-        System.out.println("Listo vaquitas");
+        int opciones = 0;
+       
     
 }
 }
