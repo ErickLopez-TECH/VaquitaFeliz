@@ -11,7 +11,7 @@ import java.util.Scanner;
  * @author hiro
  */
 public class GestionVacas {
-    
+    //--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
     //variables globales 
     
     private  static Scanner leer = new Scanner(System.in);
