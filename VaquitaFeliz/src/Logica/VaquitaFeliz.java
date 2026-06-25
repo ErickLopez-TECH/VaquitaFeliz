@@ -25,7 +25,9 @@ public class VaquitaFeliz {
     ------------------------------------------  */
     public static void menuPrincipal(){
         int opciones= 0;
-        
+        for (int i = 0; i < 100; i++) {
+        GestionVacas.nombreVaca[i] = ""; // Llenamos todo el arreglo con ""
+    }
         do {            
             System.out.println("-----------------------------------------");
             System.out.println("|             VAQUITA FELIZ             |");
@@ -67,9 +69,13 @@ public class VaquitaFeliz {
         } while (opciones <6 );
     }
     
+    // Debes llamar a este método una vez al iniciar tu programa
+
+
     public static void main(String[] args) {
         // TODO code application logic here
         menuPrincipal();
+       
     }
     
 }

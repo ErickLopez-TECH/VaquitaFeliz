@@ -66,54 +66,48 @@ public class GestionVacas {
         
         
     }
-     public  static int siguienteVaca(){
-           //-1 porque el rango de trabajo es 0 - 199
-           int indice = -1;
-           for(int i= 0; i<100; i++){
-               if(nombreVaca[i] == ""){
-                   indice = i;
-                   
-                   //en el momento que usted encuentre ese espacio vacio termine el proceso
-                   break;
-                   
-               }
-           }
-        return indice;
-       }
+public static int siguienteVaca() {
+    int indice = -1;
+    for (int i = 0; i < 100; i++) {
+        // Ahora acepta si es null O si es una cadena vacía
+        if ( nombreVaca[i] == "") {
+            indice = i;
+            break;
+        }
+    }
+    return indice;
+}
      
      
     public static void registrarVacas(){
         int indice = siguienteVaca();
-        
+       
         System.out.println("-----------------------------------------");
         System.out.println("|             REGISTRO VACAS             |");
         System.out.println("-----------------------------------------");
         
         leer.nextLine();
         
-        System.out.println("Digite el nombre de la vaca");
-        nombreVaca[indice] = leer.nextLine();
-      
-       
+       if (indice != -1) {
+            
+            System.out.println("Digite el nombre de la vaca:");
+            nombreVaca[indice] = leer.nextLine();
+        } else {
+            System.out.println("No hay espacio disponible.");
+        }
         
     }
     
-     public static void mostrarVacas(){
-            //con el ciclo for mostramos los datos
-            
-            //no mostrar loq ue esta vacio
-                for(int i = 0; i <200; i++){
-                    
-                  /*  if(nombreHabitaciones[i]!= null){
-                       System.out.println("Habitaciones "+ (i+1) + " :"+ nombreHabitaciones[i]); 
-                    }*/
-                    
-                      if((nombreVaca[i]!= "")){
-                       System.out.println("Nombre de vaca:  "+ (i+1) + " :"+ nombreVaca[i]); 
-                    }
-                  
-                }
-       }
+
     
-    
+public static void mostrarVacas() {
+    System.out.println("--- Lista de Vacas ---");
+    for (int i = 0; i < 100; i++) {
+        // Solo mostramos si el valor NO es la cadena vacía que asignamos al inicio
+        if (nombreVaca[i] != "") {
+            System.out.println("Vaca " + (i + 1) + ": " + nombreVaca[i]);
+        }
+    }
 }
+}
+
