@@ -45,7 +45,7 @@ public class VaquitaFeliz {
             switch(opciones){
                 case 1: GestionVacas.gestionVacas();
                     break;
-                case 2:
+                case 2:GestionAlimentos.gestionAlimentos();
                     break;
                 case 3:
                     break;

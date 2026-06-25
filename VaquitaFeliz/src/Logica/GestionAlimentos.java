@@ -79,7 +79,7 @@ public class GestionAlimentos {
             
             
             leer.nextLine();
-            nombreAlimentos() = leer.nextLine();
+            nombreAlimento[indice] = leer.nextLine();
     }
     
     
