@@ -16,7 +16,7 @@ public class GestionAlimentos {
     private static Scanner leer = new Scanner(System.in);
     
     //--cracion de la array 
-    
+
     static int[] codigoAlimento = new int [100];
     static String[] nombreAlimento = new String [100];
     static String[] tipoAlimento = new String [100];
