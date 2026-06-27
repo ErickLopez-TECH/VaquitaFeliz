@@ -16,6 +16,8 @@ public class GestionVacas {
     
     private  static Scanner leer = new Scanner(System.in);
     
+    static String[][] listaVacas = new String[100][5];
+    
     static int[] codigoVaca = new int[100];
     static String[] nombreVaca = new String[100];
     static String[] nombreVacas = new String[100];
