@@ -25,9 +25,14 @@ public class VaquitaFeliz {
     ------------------------------------------  */
     public static void menuPrincipal(){
         int opciones= 0;
-        for (int i = 0; i < 100; i++) {
-        GestionVacas.nombreVaca[i] = ""; // Llenamos todo el arreglo con ""
-    }
+    
+        
+        for(int i = 0; i<100; i++){
+            for (int j = 0; j < 5; j++) {
+                GestionVacas.listaVacas[i][j]="";
+                
+            }
+        }
         do {            
             System.out.println("-----------------------------------------");
             System.out.println("|             VAQUITA FELIZ             |");

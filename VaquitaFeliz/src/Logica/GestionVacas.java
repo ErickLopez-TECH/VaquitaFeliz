@@ -18,12 +18,11 @@ public class GestionVacas {
     
     static String[][] listaVacas = new String[100][5];
     
-    static int[] codigoVaca = new int[100];
-    static String[] nombreVaca = new String[100];
-    static String[] nombreVacas = new String[100];
-    static int[] edadVaca = new int[100];
-    static float[] pesoVaca = new float[100];
-    static String[] estadoProductivo = new String[100];
+    
+    
+    
+    
+    
     
     
     
@@ -55,7 +54,7 @@ public class GestionVacas {
                     break;
                 case 3: 
                     break;
-                case 4: mostrarVacas();
+                case 4: ;
                     break;
                 case 5:
                     break; 
@@ -72,7 +71,7 @@ public static int siguienteVaca() {
     int indice = -1;
     for (int i = 0; i < 100; i++) {
         // Ahora acepta si es null O si es una cadena vacía
-        if ( nombreVaca[i] == "") {
+        if ( listaVacas[i][0] == "") {
             indice = i;
             break;
         }
@@ -82,26 +81,48 @@ public static int siguienteVaca() {
      
      
     public static void registrarVacas(){
-        int indice = siguienteVaca();
+        int fila = siguienteVaca();
        
         System.out.println("-----------------------------------------");
         System.out.println("|             REGISTRO VACAS             |");
         System.out.println("-----------------------------------------");
-        
         leer.nextLine();
         
-       if (indice != -1) {
+         System.out.println("");
+         System.out.println("Digite nombre de la vaca: ");
+         String nombre = leer.nextLine();
+         
+         System.out.println("");
+         System.out.println("Digite el codigo: ");
+         int codigo = leer.nextInt();
+         
+         System.out.println("");
+         System.out.println("Digite la edad: ");
+         int edad = leer.nextInt();
+         
+         System.out.println("");
+         System.out.println("Digite el peso: ");
+         double peso = leer.nextDouble();
+          
+         leer.nextLine();
+         System.out.println("");
+         System.out.println("Digite el estado productivo: ");
+         String estadoProductivo = leer.nextLine();
+         
+        listaVacas[fila][0]= String.valueOf(codigo);
+        listaVacas[fila][1]= nombre;
+        listaVacas[fila][2]= String.valueOf(edad);
+        listaVacas[fila][3] =String.valueOf(peso);
+        listaVacas[fila][4]= estadoProductivo;
             
-            System.out.println("Digite el nombre de la vaca:");
-            nombreVaca[indice] = leer.nextLine();
-        } else {
-            System.out.println("No hay espacio disponible.");
+            
+            
         }
         
-    }
+    
     
 
-    
+    /*
 public static void mostrarVacas() {
     System.out.println("--- Lista de Vacas ---");
     for (int i = 0; i < 100; i++) {
@@ -110,6 +131,6 @@ public static void mostrarVacas() {
             System.out.println("Vaca " + (i + 1) + ": " + nombreVaca[i]);
         }
     }
-}
+}*/
 }
 
