@@ -25,7 +25,14 @@ public class VaquitaFeliz {
     ------------------------------------------  */
     public static void menuPrincipal(){
         int opciones= 0;
+    
         
+        for(int i = 0; i<100; i++){
+            for (int j = 0; j < 5; j++) {
+                GestionVacas.listaVacas[i][j]="";
+                
+            }
+        }
         do {            
             System.out.println("-----------------------------------------");
             System.out.println("|             VAQUITA FELIZ             |");
@@ -43,9 +50,9 @@ public class VaquitaFeliz {
             
             //Estructura de control y decision
             switch(opciones){
-                case 1: 
+                case 1: GestionVacas.gestionVacas();
                     break;
-                case 2:
+                case 2:GestionAlimentos.gestionAlimentos();
                     break;
                 case 3:
                     break;
@@ -67,9 +74,13 @@ public class VaquitaFeliz {
         } while (opciones <6 );
     }
     
+    // Debes llamar a este método una vez al iniciar tu programa
+
+
     public static void main(String[] args) {
         // TODO code application logic here
         menuPrincipal();
+       
     }
     
 }
