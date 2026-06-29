@@ -53,18 +53,18 @@ public class GestionVacas {
                     break;
                 case 2: modificarVacas();
                     break;
-                case 3: 
+                case 3: eliminarVacas();
                     break;
                 case 4: consultarVacas();
                     break;
-                case 5:
+                case 5: 
                     break; 
             }
             
             
             
             
-        } while (opcion < 6);
+        } while (opcion < 6 && opcion >0);
         
         
     }
@@ -81,9 +81,7 @@ public static int siguienteVaca() {
 }
      
      
-// OJO: Debes declarar este arreglo de números arriba en tu clase, 
-// a la par de donde creaste 'listaVacas'. Por ejemplo:
-// static int[] codigosVacas = new int[100]; 
+
 
 public static void registrarVacas(){
     int fila = siguienteVaca();
@@ -114,6 +112,8 @@ public static void registrarVacas(){
         if (comparacionDatos[i] == codigo) {
             duplicado = 1; // si existe
         }
+        
+        
     }
      
     }
@@ -130,18 +130,62 @@ public static void registrarVacas(){
     System.out.println("");
     System.out.println("Digite el peso: ");
     double peso = leer.nextDouble();
-      
-    leer.nextLine(); 
-    System.out.println("");
-    System.out.println("Digite el estado productivo: ");
-    String estadoProductivo = leer.nextLine();
+    
+    //Inicializacion de variables
+    int estadoProductivo = 0;
+    String estadoVaca   = "";
+    
+    
+    do { 
+        
+        leer.nextLine(); 
+        System.out.println("");
+      /*  System.out.println("Digite el estado productivo: ");*/
+        System.out.println("Digite el estado productivo al cual se muestra: ");
+        System.out.println("1. sin leche");
+        System.out.println("2. lactando");
+        System.out.println("3.Otro");
+        estadoProductivo = leer.nextInt();
+
+
+        if(estadoProductivo != 1 && estadoProductivo !=2 && estadoProductivo !=3){
+        System.out.println("\n[!] Opcion incorrecta, vuelva a intentar");
+        }
+    
+    } while (estadoProductivo !=1 && estadoProductivo !=2 && estadoProductivo !=3);
+    
+    
      
-    // Guardamos en tu matriz normal de Strings
+    if(estadoProductivo == 1){
+       estadoVaca   = "Sin leche";
+      
+    }
+     if(estadoProductivo == 2){
+       estadoVaca   = "Lactando";
+      
+    }
+    
+     String otroEstado = "";
+     if(estadoProductivo ==3){
+         System.out.println("Ingrese otro tipo: ");
+         leer.nextLine();
+         otroEstado = leer.nextLine();
+         otroEstado = estadoVaca;
+     }
+     
+     
+     
+     
+     
+    
+    
+     
+   
     listaVacas[fila][0] = String.valueOf(codigo);
     listaVacas[fila][1] = nombre;
     listaVacas[fila][2] = String.valueOf(edad);
     listaVacas[fila][3] = String.valueOf(peso);
-    listaVacas[fila][4] = estadoProductivo;
+    listaVacas[fila][4] = estadoVaca;
     
     // Guardamos el código en el arreglo de números para la próxima validación
     comparacionDatos[fila] = codigo;
@@ -160,15 +204,15 @@ public static void modificarVacas() {
         System.out.println("Digite el índice a modificar (1-100): ");
       
         indice = leer.nextInt();
-        leer.nextLine(); // Limpiar el buffer 
-       
+        leer.nextLine(); // Limpiar 
+        
     } while ((indice > 100) || (indice < 1));
     
     
     int fila = indice - 1;
     
     // 2. Si la posición no está vacía, permite modificar
-    if (listaVacas[fila][0] != null && !listaVacas[fila][0].equals("")) {
+    if (listaVacas[fila][0] !="") {
         
         System.out.println("\n--- Datos Actuales ---");
         System.out.println("Código: " + listaVacas[fila][0]);
@@ -187,7 +231,7 @@ public static void modificarVacas() {
         System.out.println("Digite el NUEVO peso: ");
         double peso = leer.nextDouble();
         
-        leer.nextLine(); // Limpiar buffer del double
+        leer.nextLine(); // Limpiar  del double
         System.out.println("Digite el NUEVO estado productivo: ");
         String estadoProductivo = leer.nextLine();
         
@@ -203,6 +247,43 @@ public static void modificarVacas() {
     } else {
         // Si el código o el nombre estaban vacíos
         System.out.println("\n[!] La posición " + indice + " está vacía. No se puede modificar.");
+    }
+}
+public static void eliminarVacas() {
+    int indice;
+
+    do {
+        System.out.println("--------------------------------------------------");
+        System.out.println("|                 Eliminar Vacas                 |");
+        System.out.println("--------------------------------------------------");
+        System.out.println("Digite el índice a eliminar (1-100): ");
+        
+        indice = leer.nextInt();
+        leer.nextLine(); // Limpiar
+        
+    } while (indice > 100 || indice < 1); 
+
+    int fila = indice - 1;
+
+    
+    if (listaVacas[fila][0] !="") { 
+        
+        System.out.println("\n--- Datos del Animal a Eliminar ---");
+        System.out.println("Código: " + listaVacas[fila][0]);
+        System.out.println("Nombre: " + listaVacas[fila][1]);
+        System.out.println("-----------------------------------\n");
+        
+        // Se vacían todas las columnas de esa fila
+        listaVacas[fila][0] = ""; // Código
+        listaVacas[fila][1] = ""; // Nombre
+        listaVacas[fila][2] = ""; // Edad
+        listaVacas[fila][3] = ""; // Peso
+        listaVacas[fila][4] = ""; // Estado Productivo
+
+        System.out.println("\n[+] ¡Vaca eliminada con éxito en el índice " + indice + "!");
+
+    } else {
+        System.out.println("\n[!] La posición " + indice + " ya está vacía. No se puede eliminar.");
     }
 }
 
