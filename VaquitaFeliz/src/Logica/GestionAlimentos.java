@@ -185,7 +185,7 @@ public class GestionAlimentos {
         boolean hayDatos = false;
         for (int i = 0; i < inventario.length; i++){
             if(inventario[i] != null){
-                System.out.printf("%-8d %-20s %-15s %-12d %-12.2f%n",
+                System.out.print("%-8d %-20s %-15s %-12d %-12.2f%n",
                         inventario[i].codigo,
                         inventario[i].nombre,
                         inventario[i].tipo,
