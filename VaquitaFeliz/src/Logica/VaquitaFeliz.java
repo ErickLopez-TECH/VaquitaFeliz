@@ -18,7 +18,7 @@ public class VaquitaFeliz {
     /*-------------------------------------------/
     |            VARIABLES GLOBALES|
     ------------------------------------------  */
-    private static Scanner leer = new Scanner(System.in);
+   public static Scanner leer = new Scanner(System.in);
     
     /*-------------------------------------------/
     | MENU PRINCIPAL,GESTION DE TODOS LOS MODULOS|

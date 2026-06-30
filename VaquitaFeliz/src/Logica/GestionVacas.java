@@ -14,7 +14,7 @@ public class GestionVacas {
     //--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
     //variables globales 
     
-    private  static Scanner leer = new Scanner(System.in);
+    static Scanner leer = new Scanner(System.in);
     
     static String[][] listaVacas = new String[100][5];
     
@@ -45,7 +45,7 @@ public class GestionVacas {
             System.out.println("4.Consultar Vaca");
             System.out.println("5.Regresar");
            
-            opcion = leer.nextInt();
+            opcion = VaquitaFeliz.leer.nextInt();
             
             switch (opcion) {
                 case 1:registrarVacas();
