@@ -14,12 +14,13 @@ public class GestionVacas {
     //--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
     //variables globales 
     
-    static Scanner leer = new Scanner(System.in);
+    private  static Scanner leer = new Scanner(System.in);
     
-    static String[][] listaVacas = new String[100][5];
+    public static String[][] listaVacas = new String[100][5];
     
     static int[] comparacionDatos = new int[100];
     
+    static int numeroPosicion ;
     
     
     
@@ -45,7 +46,7 @@ public class GestionVacas {
             System.out.println("4.Consultar Vaca");
             System.out.println("5.Regresar");
            
-            opcion = VaquitaFeliz.leer.nextInt();
+            opcion = leer.nextInt();
             
             switch (opcion) {
                 case 1:registrarVacas();
@@ -170,7 +171,7 @@ public static void registrarVacas(){
          System.out.println("Ingrese otro tipo: ");
          leer.nextLine();
          otroEstado = leer.nextLine();
-         otroEstado = estadoVaca;
+         estadoVaca = otroEstado;
      }
      
      
@@ -192,6 +193,7 @@ public static void registrarVacas(){
     
     System.out.println("\n[+] Vaca registrada con éxito.");
 }
+
 
 public static void modificarVacas() {
     int indice;
@@ -219,11 +221,9 @@ public static void modificarVacas() {
         System.out.println("Nombre: " + listaVacas[fila][1]);
         System.out.println("-----------------------\n");
 
-        System.out.println("Digite el NUEVO nombre de la vaca: ");
-        String nombre = leer.nextLine();
         
-        System.out.println("Digite el NUEVO código: ");
-        int codigo = leer.nextInt();
+        
+        
         
         System.out.println("Digite la NUEVA edad: ");
         int edad = leer.nextInt();
@@ -231,16 +231,55 @@ public static void modificarVacas() {
         System.out.println("Digite el NUEVO peso: ");
         double peso = leer.nextDouble();
         
-        leer.nextLine(); // Limpiar  del double
-        System.out.println("Digite el NUEVO estado productivo: ");
-        String estadoProductivo = leer.nextLine();
         
-        // 3. Se guardan los nuevos datos
-        listaVacas[fila][0] = String.valueOf(codigo);
-        listaVacas[fila][1] = nombre;
+        
+         int estadoProductivo = 0;
+        String estadoVaca   = "";
+    
+    
+    do { 
+        
+        leer.nextLine(); 
+        System.out.println("");
+      /*  System.out.println("Digite el estado productivo: ");*/
+        System.out.println("Digite el estado productivo al cual se muestra: ");
+        System.out.println("1. sin leche");
+        System.out.println("2. lactando");
+        System.out.println("3.Otro");
+        estadoProductivo = leer.nextInt();
+
+
+        if(estadoProductivo != 1 && estadoProductivo !=2 && estadoProductivo !=3){
+        System.out.println("\n[!] Opcion incorrecta, vuelva a intentar");
+        }
+    
+    } while (estadoProductivo !=1 && estadoProductivo !=2 && estadoProductivo !=3);
+    
+    
+     
+    if(estadoProductivo == 1){
+       estadoVaca   = "Sin leche";
+      
+    }
+     if(estadoProductivo == 2){
+       estadoVaca   = "Lactando";
+      
+    }
+    
+     String otroEstado = "";
+     if(estadoProductivo ==3){
+         System.out.println("Ingrese otro tipo: ");
+         leer.nextLine();
+         otroEstado = leer.nextLine();
+         estadoVaca = otroEstado;
+     }
+        
+        // Se guardan los nuevos datos
+        
+        listaVacas[fila][4] = estadoVaca;
         listaVacas[fila][2] = String.valueOf(edad);
         listaVacas[fila][3] = String.valueOf(peso);
-        listaVacas[fila][4] = estadoProductivo;
+        
         
         System.out.println("\n[+] ¡Vaca modificada con éxito en el índice " + indice + "!");
         
@@ -294,7 +333,7 @@ public static void consultarVacas() {
     
     // Encabezados de la tabla separados  (\t)
     System.out.println("ÍNDICE\tCÓDIGO\tNOMBRE\tEDAD\tPESO\tESTADO PRODUCTIVO");
-    System.out.println("---------------------------------------------------------------------------------------------");
+    System.out.println("-----------------------------------------------------");
     
    
     for (int i = 0; i < 100; i++) {
@@ -302,7 +341,7 @@ public static void consultarVacas() {
         
         if (listaVacas[i][0] != null && listaVacas[i][0] != "") {
             
-            int numeroPosicion = i + 1; // Índice 1 no 0
+             numeroPosicion = i + 1; // Índice 1 no 0
             
             // Imprimimos la fila usando \t para separar cada columna
             System.out.println("[" + numeroPosicion + "]\t" +
@@ -313,7 +352,7 @@ public static void consultarVacas() {
                                listaVacas[i][4]);
         }
     }
-    System.out.println("---------------------------------------------------------------------------------------------");
+    System.out.println("-----------------------------------------------------");
 }
     
     
