@@ -18,7 +18,7 @@ public class VaquitaFeliz {
     /*-------------------------------------------/
     |            VARIABLES GLOBALES|
     ------------------------------------------  */
-   public static Scanner leer = new Scanner(System.in);
+    private static Scanner leer = new Scanner(System.in);
     
     /*-------------------------------------------/
     | MENU PRINCIPAL,GESTION DE TODOS LOS MODULOS|
@@ -33,6 +33,8 @@ public class VaquitaFeliz {
                 
             }
         }
+        
+        
         do {            
             System.out.println("-----------------------------------------");
             System.out.println("|             VAQUITA FELIZ             |");
@@ -56,7 +58,7 @@ public class VaquitaFeliz {
                     break;
                 case 3:
                     break;
-                case 4:
+                case 4: RegistroProduccion.gestionProdu();
                     break;
                 case 5:
                     break;
