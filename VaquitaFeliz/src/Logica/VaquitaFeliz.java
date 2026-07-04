@@ -34,6 +34,12 @@ public class VaquitaFeliz {
             }
         }
         
+         for(int i = 0; i<100; i++){
+            for (int j = 0; j < 5; j++) {
+                RegistroProduccion.listaProduccion[i][j]= "";
+                
+            }
+        }
         
         do {            
             System.out.println("-----------------------------------------");
