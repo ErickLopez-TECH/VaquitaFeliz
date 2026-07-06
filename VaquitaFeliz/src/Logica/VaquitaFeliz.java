@@ -66,7 +66,7 @@ public class VaquitaFeliz {
                     break;
                 case 4: RegistroProduccion.gestionProdu();
                     break;
-                case 5:
+                case 5: MenuReportes.menuPrincipal();
                     break;
             }
             if(opciones ==6){

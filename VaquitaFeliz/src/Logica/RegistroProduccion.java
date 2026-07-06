@@ -57,18 +57,17 @@ public class RegistroProduccion {
                     break;
                case 5:  consultarCodigo();
                     break; 
-                case 6: VaquitaFeliz.menuPrincipal();
-                    break;
-            }
-            
-            if((opcion >6) || (opcion <0)){
+                case 6: return;
+                default:
+
                 System.out.println("-----------------------------------------");
                 System.out.println("|  [!] DIGITE UNA OPCION CORRECTA(1-6)  |");
                 System.out.println("-----------------------------------------");
+                break;
             }
             
             
-        } while (opcion <0 || opcion >6);
+        } while (opcion !=6);
         
         
     }
@@ -100,15 +99,27 @@ public static void registrarProduccion() {
 
     System.out.print("Codigo de la vaca: ");
     String codigo = leer.next();
-
-    // 1. extraccion del metodo buscarfila con parametros
+    
+    
+    // 1. Traer del metodo buscarfila con parametros
     int filaC = buscarFila(codigo);
+    
+    for (int i = 0; i < 100; i++) {
+            if (("Secas".equals(GestionVacas.listaVacas[i][4])) 
+                    && GestionVacas.listaVacas[i][0].equals(codigo) ) {
+                System.out.println("[!]error: Esta vaca codigo: "+codigo+ " no esta produciendo");
+                System.out.println("Asegurese de cambiar en el menu de gestion vacas su estado");
+                
+        return;
+    }
+    }
+    
     
     
     //valor qu edevuelve el metodo de fila
     if (filaC == -1) {
         System.out.println("[!] ERROR: Vaca no registrada en el sistema.");
-        return;//retornamos al menu produccion 
+        return;//retornamos 
     }
 
     // 2. VALIDACIÓN DE SEMANA (do-while)
@@ -190,8 +201,9 @@ for (int i = 0; i < 100; i++) {
                     listaProduccion[fila][j] = "0";
                 
                 }
+                break;
             }
-            break;
+            
         }
     }
 
@@ -240,7 +252,38 @@ public static void modificaProduccion() {
             
             
             int dia;
-            do {
+            
+            
+
+                // Este do-while SOLO valida que el dia este entre 1 y 7
+                do {
+                    System.out.println("Ingrese la opcion del (1-7) segun corresponda el dia:");
+                    System.out.println("1. Lunes");
+                    System.out.println("2. Martes");
+                    System.out.println("3. Miercoles");
+                    System.out.println("4. Jueves");
+                    System.out.println("5. Viernes");
+                    System.out.println("6. Sabado");
+                    System.out.println("7. Domingo");
+                    dia = leer.nextInt();
+                    if (dia < 1 || dia > 7) {
+                        System.out.println("[!] Error: El dia debe estar entre 1 y 7.");
+                    }
+                } while (dia < 1 || dia > 7);
+
+               int colDia = 2 + dia;
+
+                // Verificacion del "0" AFUERA del do-while de arriba
+                if (listaProduccion[i][colDia].equals("0")) {
+                    System.out.println("-------------------------------------------------------");
+                    System.out.println("[!] Ese dia no tiene produccion registrada todavia.");
+                    System.out.println("Debe ir primero al menu 'Registrar' para ingresar");
+                    System.out.println("la produccion de ese dia antes de poder modificarla.");
+                    System.out.println("-------------------------------------------------------");
+                   return;
+                } 
+        
+     /*       do {
                 
                 
                 System.out.println("Ingrese la opcion del (1-7) segun corresponda el dia:");
@@ -252,7 +295,8 @@ public static void modificaProduccion() {
                 System.out.println("6. Sabado");
                 System.out.println("7. Domingo");
                 dia = leer.nextInt();
-            } while (dia < 1 || dia > 7);
+                
+            } while (dia < 1 || dia > 7);*/
 
             double nuevosLitros = 0;
             do {  
@@ -263,7 +307,7 @@ public static void modificaProduccion() {
             
 
             // 1. Reemplazar el dato viejo por el nuevo
-            int colDia = 2 + dia; 
+             
             listaProduccion[i][colDia] = String.valueOf(nuevosLitros);
 
             // 2. Recalcular el total sumando todas las columnas de dia [3] hasta [9]
@@ -291,9 +335,9 @@ public static void modificaProduccion() {
 
 
 public static void mostrarProduccion() {
-    System.out.println("----------------------------------------------------------------------------------------------------");
+    System.out.println("---------------------------------------------------------------");
     System.out.println("COD\tNOMBRE\tSEM\tLUN\tMAR\tMIE\tJUE\tVIE\tSAB\tDOM\tTOTAL");
-    System.out.println("----------------------------------------------------------------------------------------------------");
+    System.out.println("---------------------------------------------------------------");
 
     for (int i = 0; i < 100; i++) {
         if (listaProduccion[i][0] != "") {
@@ -312,7 +356,7 @@ public static void mostrarProduccion() {
             System.out.println(""); // Salto de línea al terminar la fila
         }
     }
-    System.out.println("----------------------------------------------------------------------------------------------------");
+    System.out.println("-----------------------------------------------------------------");
 }
   
 /*-------------------------------------------------------------
@@ -334,14 +378,14 @@ public static void mostrarProduccion() {
         for (int i = 0; i < 100; i++) {
         if (listaProduccion[i][0].equals(buscarCodigo)) {
             
-            System.out.println("----------------------------------------------------------------------------------------------------");
+            System.out.println("-----------------------------    ------------------------------");
             System.out.println("COD\tNOMBRE\tSEM\tLUN\tMAR\tMIE\tJUE\tVIE\tSAB\tDOM\tTOTAL");
-            System.out.println("----------------------------------------------------------------------------------------------------");
+            System.out.println("---------------------------------------------------------------");
 
             // Imprimimos los campos básicos
             System.out.print(listaProduccion[i][0] + "\t");
             
-            // Si el nombre es corto, usamos dos tabs para compensar
+            
             System.out.print(listaProduccion[i][1] + "\t");
             
             System.out.print(listaProduccion[i][2] + "\t");
@@ -353,7 +397,7 @@ public static void mostrarProduccion() {
             System.out.println(""); // Salto de línea al terminar la fila
         }
         
-        System.out.println("----------------------------------------------------------------------------------------------------");
+        System.out.println("-------------------------------------------------------------------");
         System.out.println("[!] Digite un codigo previamente registrado en produccion");
         return;    
     }

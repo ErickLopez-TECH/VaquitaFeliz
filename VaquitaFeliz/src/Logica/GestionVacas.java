@@ -11,14 +11,14 @@ import java.util.Scanner;
  * @author hiro
  */
 public class GestionVacas {
-    //--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
+    
     //variables globales 
     
     private  static Scanner leer = new Scanner(System.in);
     
     public static String[][] listaVacas = new String[100][5];
     
-    static int[] comparacionDatos = new int[100];
+  //  static int[] comparacionDatos = new int[100];
     
     static int numeroPosicion ;
     
@@ -58,14 +58,16 @@ public class GestionVacas {
                     break;
                 case 4: consultarVacas();
                     break;
-                case 5: 
-                    break; 
+                case 5: return;
+                    
+            }
+            
+            if((opcion <1) || (opcion >5)){
+                System.out.println("[!] error: Ingrese una opcion valida entre 1-5");
             }
             
             
-            
-            
-        } while (opcion < 6 && opcion >0);
+        } while ((opcion <5 )|| (opcion >5));
         
         
     }
@@ -96,32 +98,41 @@ public static void registrarVacas(){
     System.out.println("Digite nombre de la vaca: ");
     String nombre = leer.nextLine();
      
-    System.out.println("");
-    System.out.println("Digite el codigo: ");
-    int codigo = leer.nextInt();
-     
-    
-    int duplicado = 0;
-     
-  
+    //comparacion con los datos ya guardados
     for (int i = 0; i < 100; i++) {
-        
-        if ( listaVacas[i][0] != "") {
-        
-        // Segundo: Si hay datos, comparamos el código del arreglo con el que digitó el usuario
-       
-        if (comparacionDatos[i] == codigo) {
-            duplicado = 1; // si existe
+        if ((listaVacas[i][1].equals(nombre))) {
+            System.out.println("[!] Nombre existente en el registro");
+            return;
         }
         
+    }
+    
+    System.out.println("");
+    System.out.println("Digite el codigo: ");
+    String codigo = leer.nextLine();
+     
+    
+    
+    //int duplicado = 0;
+     
+  //comparacion con el codigo
+    for (int i = 0; i < 100; i++) {
         
+        if ( listaVacas[i][0].equals(codigo)) {
+        
+            System.out.println("[!] Codigo existente en el registro");
+            return;
+        
+       // if (comparacionDatos[i] == codigo) {
+           // duplicado = 1; // si existe
+       // }
     }
      
     }
-    if (duplicado == 1) {
+   /* if (duplicado == 1) {
         System.out.println("\n[!] Error: El código de la vaca ya existe.");
         return; // termina el proceso de una vez
-    }
+    }*/
     // --------------------------------------------------------
      
     System.out.println("");
@@ -143,8 +154,8 @@ public static void registrarVacas(){
         System.out.println("");
       /*  System.out.println("Digite el estado productivo: ");*/
         System.out.println("Digite el estado productivo al cual se muestra: ");
-        System.out.println("1. sin leche");
-        System.out.println("2. lactando");
+        System.out.println("1. Secas");
+        System.out.println("2. Lactancia");
         System.out.println("3.Otro");
         estadoProductivo = leer.nextInt();
 
@@ -158,11 +169,11 @@ public static void registrarVacas(){
     
      
     if(estadoProductivo == 1){
-       estadoVaca   = "Sin leche";
+       estadoVaca   = "Secas";
       
     }
      if(estadoProductivo == 2){
-       estadoVaca   = "Lactando";
+       estadoVaca   = "Lactancia";
       
     }
     
@@ -182,14 +193,12 @@ public static void registrarVacas(){
     
      
    
-    listaVacas[fila][0] = String.valueOf(codigo);
+    listaVacas[fila][0] = codigo;
     listaVacas[fila][1] = nombre;
     listaVacas[fila][2] = String.valueOf(edad);
     listaVacas[fila][3] = String.valueOf(peso);
     listaVacas[fila][4] = estadoVaca;
     
-    // Guardamos el código en el arreglo de números para la próxima validación
-    comparacionDatos[fila] = codigo;
     
     System.out.println("\n[+] Vaca registrada con éxito.");
 }
@@ -216,11 +225,18 @@ public static void modificarVacas() {
     // 2. Si la posición no está vacía, permite modificar
     if (listaVacas[fila][0] !="") {
         
-        System.out.println("\n--- Datos Actuales ---");
-        System.out.println("Código: " + listaVacas[fila][0]);
-        System.out.println("Nombre: " + listaVacas[fila][1]);
-        System.out.println("-----------------------\n");
+        System.out.println("-----------Datos Actuales--------------------------");
+        System.out.println("Codigo\tNombre\tEdad\tPeso\tEstado Productivo");
+        System.out.println("---------------------------------------------------");
+        
 
+        System.out.print(listaVacas[fila][0] + "\t");
+        System.out.print(listaVacas[fila][1] + "\t");
+        System.out.print(listaVacas[fila][2] + "\t");
+        System.out.print(listaVacas[fila][3] + "\t");
+        System.out.print(listaVacas[fila][4] + "\t");
+        System.out.println("\n---------------------------------------------------");
+        System.out.println("");
         
         
         
@@ -243,8 +259,8 @@ public static void modificarVacas() {
         System.out.println("");
       /*  System.out.println("Digite el estado productivo: ");*/
         System.out.println("Digite el estado productivo al cual se muestra: ");
-        System.out.println("1. sin leche");
-        System.out.println("2. lactando");
+        System.out.println("1. Seca");
+        System.out.println("2. Lactancia");
         System.out.println("3.Otro");
         estadoProductivo = leer.nextInt();
 
@@ -258,11 +274,11 @@ public static void modificarVacas() {
     
      
     if(estadoProductivo == 1){
-       estadoVaca   = "Sin leche";
+       estadoVaca   = "Seca";
       
     }
      if(estadoProductivo == 2){
-       estadoVaca   = "Lactando";
+       estadoVaca   = "Lactancia";
       
     }
     
@@ -327,19 +343,41 @@ public static void eliminarVacas() {
 }
 
 public static void consultarVacas() {
-    System.out.println("---------------------------------------------------------------------------------------------");
-    System.out.println("|                                      LISTA DE VACAS                                       |");
-    System.out.println("---------------------------------------------------------------------------------------------");
+    System.out.println("-----------------------------------------------------");
+    System.out.println("|                LISTA DE VACAS                     |");
+    System.out.println("-----------------------------------------------------");
     
     // Encabezados de la tabla separados  (\t)
     System.out.println("ÍNDICE\tCÓDIGO\tNOMBRE\tEDAD\tPESO\tESTADO PRODUCTIVO");
     System.out.println("-----------------------------------------------------");
     
+/*ideal para establecer un limite de x en esa columna
+System.out.printf("%-10s%-16s%-15s%-8s%-8s%-20s%n", "ÍNDICE", "CÓDIGO", "NOMBRE", "EDAD", "PESO", "ESTADO PRODUCTIVO");
+System.out.println("-----------------------------------------------------------------------------------------");
+for (int i = 0; i < 100; i++) {
+    if (listaVacas[i][0] != "") {
+        numeroPosicion = i + 1; // Índice 1 no 0
+        
+        // Creamos el formato del índice con sus llaves como lo tenías:, [2], etc.
+        String indiceFormateado = "[" + numeroPosicion + "]";
+        
+        // Imprimimos la fila con columnas alineadas usando tamaños fijos
+        System.out.printf("%-10s%-16s%-15s%-8s%-8s%-20s%n", 
+            indiceFormateado,
+            listaVacas[i][0], // Código (Soporta los 14 dígitos sin mover nada)
+            listaVacas[i][1], // Nombre
+            listaVacas[i][2], // Edad
+            listaVacas[i][3], // Peso
+            listaVacas[i][4]  // Estado Productivo
+        );
+    }
+}
+*/
    
     for (int i = 0; i < 100; i++) {
         
         
-        if (listaVacas[i][0] != null && listaVacas[i][0] != "") {
+        if (listaVacas[i][0] != "") {
             
              numeroPosicion = i + 1; // Índice 1 no 0
             
@@ -357,15 +395,6 @@ public static void consultarVacas() {
     
     
 
-    /*
-public static void mostrarVacas() {
-    System.out.println("--- Lista de Vacas ---");
-    for (int i = 0; i < 100; i++) {
-        // Solo mostramos si el valor NO es la cadena vacía que asignamos al inicio
-        if (nombreVaca[i] != "") {
-            System.out.println("Vaca " + (i + 1) + ": " + nombreVaca[i]);
-        }
-    }
-}*/
+
 }
 
