@@ -1,0 +1,2 @@
+# Ignorar carpetas de configuracion privada de NetBeans
+**/nbproject/private/
