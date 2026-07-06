@@ -12,7 +12,7 @@ import java.util.Scanner;
  * @author triamus
  */
 public class GestionAlimentos {
-    
+    //--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
     private static Scanner leer = new Scanner(System.in);
     
     //--cracion de la array 
@@ -80,8 +80,36 @@ public class GestionAlimentos {
             
             leer.nextLine();
             nombreAlimento[indice] = leer.nextLine();
+            
+            System.out.println("");
+            System.out.println("Digite el codigo del alimento: ");
+            String nombre = leer.nextLine();
+            int codigo = 0;
+            
+            
+            
+            
+    }
+    
+    public static void modificarAlimento(){
+        
+        
+        
+            System.out.println("-----------------------------------------");
+            System.out.println("|          MODIFICAR DE ALIMENTOS       |");
+            System.out.println("-----------------------------------------"); 
+        
+  
+        
     }
     
     
+    public static void eliminarAlimento(){
+        
+    }
+    
+    public static void cosultarAlimento(){
+        
+    }
     
 }
