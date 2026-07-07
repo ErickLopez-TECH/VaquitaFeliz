@@ -152,24 +152,10 @@ public static void registrarProduccion() {
         }
     } while (dia < 1 || dia > 7);
 
-    //usuario ingresa lo litros con ciertas resticciones
-     double nuevosLitros = 0; 
-    do {  
-        System.out.print("Ingrese la cantidad litros: ");
-        leer.nextLine();
-        nuevosLitros = leer.nextDouble();
-        
-        if(nuevosLitros < 0){
-            System.out.println("[!]Error: Los litros no pueden ser negativos");
-            System.out.println("Valores negativos no permitidos");
-            System.out.println("Intentas escribir"+"("+(nuevosLitros * -1)+")?");
-        }
-    } while (nuevosLitros <0);
-    
-
-    
-
-    //ocupamos traer ese dato hacia aqui nombre de la vaca
+    //guardar datos para la array columna
+     int colDia = 2 + dia; 
+     
+         //ocupamos traer ese dato hacia aqui nombre de la vaca
     String nombreVaca = ""; 
 for (int i = 0; i < 100; i++) {
     if (GestionVacas.listaVacas[i][0].equals(codigo)) {
@@ -177,8 +163,8 @@ for (int i = 0; i < 100; i++) {
         break; //ya lo encontramos
     }
 }
- 
-    // Convertimos semana(vienene en entero) a String para la comparación
+
+     // Convertimos semana(vienene en entero) a String para la comparación
     String semanaStr = String.valueOf(semana);
     int fila = -1;
     // 4. BUSCAR SI YA EXISTE REGISTRO
@@ -188,7 +174,7 @@ for (int i = 0; i < 100; i++) {
             break;
         }
     }
-
+    
     // 5. SI NO EXISTE, BUSCAR FILA VACÍA
     if (fila == -1) {
         for (int i = 0; i < 100; i++) {
@@ -206,20 +192,57 @@ for (int i = 0; i < 100; i++) {
             
         }
     }
+    
+        if (!listaProduccion[fila][colDia].equals("0")) {
+    System.out.println("-------------------------------------------------------");
+    System.out.println("[!] Ya existe produccion registrada para este dia.");
+    System.out.println("Use la opcion 'Modificar' si desea corregir el valor.");
+    System.out.println("-------------------------------------------------------");
+    return;
+}
+    
+    //usuario ingresa lo litros con ciertas resticciones
+     double nuevosLitros = 0; 
+    do {  
+        System.out.print("Ingrese la cantidad litros: ");
+        leer.nextLine();
+        nuevosLitros = leer.nextDouble();
+        
+        if(nuevosLitros < 0){
+            System.out.println("[!]Error: Los litros no pueden ser negativos");
+            System.out.println("Valores negativos no permitidos");
+            System.out.println("Intentas escribir"+"("+(nuevosLitros * -1)+")?");
+        }
+    } while (nuevosLitros <0);
+    
+
+    
+
+
+ 
+    
+
+    
+
+
 
   
-    // 6. GUARDAR DATOS
-    int colDia = 2 + dia; 
+    
+    
     
     //esta en String se parsea a double por ejemplo 2 en estring !=  2 int
     double litrosActuales = Double.parseDouble(listaProduccion[fila][colDia]);
     //antes de pasarlos se hace la suma y si e snueva fila seria 0 + ingresados
-    listaProduccion[fila][colDia] = String.valueOf(litrosActuales + nuevosLitros);
+    //listaProduccion[fila][colDia] = String.valueOf(litrosActuales + nuevosLitros);
+    // GUARDAR DATOS 
+    listaProduccion[fila][colDia] = String.valueOf(nuevosLitros);
 
-    //lo parseamos de strin a numero
     double totalActual = Double.parseDouble(listaProduccion[fila][10]);
-    //no sumamos cada dia de una vez se suma lo que hay + lo nuevo
     listaProduccion[fila][10] = String.valueOf(totalActual + nuevosLitros);
+    //lo parseamos de strin a numero
+    //double totalActual = Double.parseDouble(listaProduccion[fila][10]);
+    //no sumamos cada dia de una vez se suma lo que hay + lo nuevo
+   // listaProduccion[fila][10] = String.valueOf(totalActual + nuevosLitros);
 
     System.out.println("Registro exitoso. Total semanal: " + listaProduccion[fila][10]);
 }
