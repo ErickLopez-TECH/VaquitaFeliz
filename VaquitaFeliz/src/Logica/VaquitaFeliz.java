@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author triamus
+ * @author Erick
  */
 public class VaquitaFeliz {
 
@@ -19,6 +19,8 @@ public class VaquitaFeliz {
     |            VARIABLES GLOBALES|
     ------------------------------------------  */
     private static Scanner leer = new Scanner(System.in);
+    public static String[][] listaVacas = new String[100][5];
+    
     
     /*-------------------------------------------/
     | MENU PRINCIPAL,GESTION DE TODOS LOS MODULOS|
@@ -27,19 +29,14 @@ public class VaquitaFeliz {
         int opciones= 0;
     
         
-        for(int i = 0; i<100; i++){
-            for (int j = 0; j < 5; j++) {
-                GestionVacas.listaVacas[i][j]="";
-                
-            }
-        }
+       
         
-         for(int i = 0; i<100; i++){
+        /*for(int i = 0; i<100; i++){
             for (int j = 0; j < 5; j++) {
                 RegistroProduccion.listaProduccion[i][j]= "";
                 
             }
-        }
+        }*/
         
         do {            
             System.out.println("-----------------------------------------");

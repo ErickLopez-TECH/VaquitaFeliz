@@ -6,7 +6,7 @@ package Logica;
 
 /**
  *
- * @author triamus
+ * @author Erick
  */
 public class ReportesProduccion {
     public static void mostrarProduccion() {

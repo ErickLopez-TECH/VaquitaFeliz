@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author triamus
+ * @author Erick
  */
 public class RegistroProduccion {
     
@@ -22,6 +22,13 @@ public class RegistroProduccion {
     static String[][] listaProduccion = new String[100][11];
     
     
+    static {
+        for (int i = 0; i < 100; i++) {
+            for (int j = 0; j < 11; j++) {
+                listaProduccion[i][j]= "";
+            }
+        }
+    }
             
     
     public static void gestionProdu(){
@@ -57,7 +64,7 @@ public class RegistroProduccion {
                     break;
                case 5:  consultarCodigo();
                     break; 
-                case 6: return;
+                case 6: VaquitaFeliz.menuPrincipal();
                 default:
 
                 System.out.println("-----------------------------------------");

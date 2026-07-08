@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author triamus
+ * @author Erick
  */
 public class MenuReportes {
     
