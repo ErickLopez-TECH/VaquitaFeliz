@@ -108,6 +108,7 @@ public static void registrarProduccion() {
     String codigo = leer.next();
     
     
+    
     // 1. Traer del metodo buscarfila con parametros
     int filaC = buscarFila(codigo);
     
@@ -252,6 +253,7 @@ for (int i = 0; i < 100; i++) {
    // listaProduccion[fila][10] = String.valueOf(totalActual + nuevosLitros);
 
     System.out.println("Registro exitoso. Total semanal: " + listaProduccion[fila][10]);
+    
 }
 /*
   ---------------------------------------

@@ -59,7 +59,7 @@ public class VaquitaFeliz {
                     break;
                 case 2:GestionAlimentos.gestionAlimentos();
                     break;
-                case 3:
+                case 3:RegistroAlimentacion.RegistroAlimentacion();
                     break;
                 case 4: RegistroProduccion.gestionProdu();
                     break;
