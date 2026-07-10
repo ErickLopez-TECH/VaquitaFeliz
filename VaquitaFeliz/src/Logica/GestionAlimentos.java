@@ -150,6 +150,7 @@ public class GestionAlimentos {
             }
         } while (cantidadDisponible < 0);
  
+        
         // Se guardan los datos en la fila libre encontrada
         inventario[fila][0] = codigo;
         inventario[fila][1] = nombre;

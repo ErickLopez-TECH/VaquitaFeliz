@@ -12,12 +12,12 @@ import java.util.Scanner;
  */
 
 public class RegistroAlimentacion {
-    static String[][] registroAlimentacion = new String[100][11];
+    static String[][] registroAlimentacion = new String[100][13];
     static Scanner leer = new Scanner(System.in);
     
     static {
         for (int i = 0; i < 100; i++) {
-            for (int j = 0; j < 10; j++) {
+            for (int j = 0; j < 11; j++) {
                 registroAlimentacion[i][j]= "";
                 
             }
@@ -50,7 +50,7 @@ public class RegistroAlimentacion {
                     break;
                 case 2: ;
                     break;
-                case 3: ;
+                case 3: borrarAlimentacion();
                     break;
                case 4: mostrarAlimentacion();
                         
@@ -164,7 +164,11 @@ public class RegistroAlimentacion {
             System.out.println("[!] En su inventario de alimentacion no hay insumos suficientes");
             System.out.println("para abarcar la cantidad digitada, Inventario disponible: " + inventarioCal);
             return;
+        }else{
+            inventarioCal = inventarioCal - nuevosGastos;
+            GestionAlimentos.inventario[existencia][4] = String.valueOf(inventarioCal);
         }
+        
         
         
     
@@ -199,15 +203,13 @@ public class RegistroAlimentacion {
     
     if (!registroAlimentacion[fila][colDia].equals("0")) {
     System.out.println("-------------------------------------------------------");
-    System.out.println("[!] Ya existe produccion registrada para este dia.");
+    System.out.println("[!] Ya existe alimentacion registrada para este dia.");
     System.out.println("Use la opcion 'Modificar' si desea corregir el valor.");
     System.out.println("-------------------------------------------------------");
     return;
     }
     
     
-    
- 
     
     double cantidadGastada= Double.parseDouble(registroAlimentacion[fila][colDia]);
     registroAlimentacion[fila][colDia] = String.valueOf(nuevosGastos);
@@ -222,15 +224,29 @@ public class RegistroAlimentacion {
       }
       
       
-      // Este método añade espacios al principio hasta que el dato tenga un tamaño predecible.
-
+      
+    public static void borrarAlimentacion(){
+        System.out.println("---------------------------------------");
+        System.out.println("|       BORRADO DE Alimentos         |");
+        System.out.println("---------------------------------------");
+        System.out.println("");
+        System.out.println("Digite el numero de codigo de vaca borrar ");
+        leer.nextLine();//manejo de errores de lectura
+        String codigoVaca = leer.nextLine();
+        for (int i = 0; i < 100; i++){         
+            if ( codigoVaca.equals( registroAlimentacion[i][1] )  ){
+                for (int j = 0; j < 11; j++) {
+                    registroAlimentacion[i][j] = "";
+                }
+            }
+        }
+    } 
     
       public static void mostrarAlimentacion() {
-    
 
     System.out.println("---------------------------------------------------------------------------------------");
-System.out.println("  SEM\t  Vaca\t  Alim\t   LUN\t   MAR\t   MIE\t   JUE\t   VIE\t   SAB\t   DOM\t TOTAL");
-System.out.println("---------------------------------------------------------------------------------------");
+    System.out.println("  SEM\t  Vaca\t  Alim\t   LUN\t   MAR\t   MIE\t   JUE\t   VIE\t   SAB\t   DOM\t TOTAL");
+    System.out.println("---------------------------------------------------------------------------------------");
 
 for (int i = 0; i < 100; i++) {
     if (!registroAlimentacion[i][0].equals("")) {
