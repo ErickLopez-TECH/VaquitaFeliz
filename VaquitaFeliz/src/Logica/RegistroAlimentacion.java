@@ -32,7 +32,7 @@ public class RegistroAlimentacion {
         
         do {            
             System.out.println("-----------------------------------------");
-            System.out.println("|           Gestion Alimentacion        |");
+            System.out.println("|           Registro Alimentacion       |");
             System.out.println("-----------------------------------------");
             System.out.println("Ingrese una opcion(1-5), luego presione");
             System.out.println("la tecla enter.");
@@ -77,7 +77,7 @@ public class RegistroAlimentacion {
       
       public static void registrarAlimentacion(){
             System.out.println("---------------------------------------");
-            System.out.println("|      REGISTRO DE PRODUCCION         |");
+            System.out.println("|      REGISTRO DE ALIMENTACION         |");
             System.out.println("---------------------------------------");
 
             System.out.print("Digite el codigo de la vaca: ");
