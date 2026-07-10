@@ -104,7 +104,7 @@ public class GestionAlimentos {
  
         // Validacion de codigo duplicado (recorre solo posiciones no llenas)
         for (int i = 0; i <100; i++) {
-            if (inventario[i][0] != "" && inventario[i][0].equals(codigo)) {
+            if (!inventario[i][0].equals("") && inventario[i][0].equals(codigo)) {
                 System.out.println("[!] Codigo existente en el registro");
                 return;
             }
@@ -116,7 +116,7 @@ public class GestionAlimentos {
  
         // Validacion de nombre duplicado usando equals()
         for (int i = 0; i < 100; i++) {
-            if (inventario[i][1] != "" && inventario[i][1].equals(nombre)) {
+            if (!inventario[i][1].equals("") && inventario[i][1].equals(nombre)) {
                 System.out.println("[!] Nombre existente en el registro");
                 return;
             }
