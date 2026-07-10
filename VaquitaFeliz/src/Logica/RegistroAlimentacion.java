@@ -279,34 +279,46 @@ for (int i = 0; i < 100; i++) {
     System.out.print("Digite el codigo de la vaca: ");
     String codigo = leer.next();
 
+    System.out.print("Digite el codigo del alimento: ");
+    String codigoAlimento = leer.next();
+
+    int indiceAlimento = -1;
+    for (int i = 0; i < 100; i++) {
+        if (GestionAlimentos.inventario[i][0].equals(codigoAlimento)) {
+            indiceAlimento = i;
+        }
+    }
+
+    if (indiceAlimento == -1) {
+        System.out.println("[!] Este codigo de alimento no existe en el registro");
+        return;
+    }
+
     int semana = 0;
     do {
         System.out.print("Ingrese la semana a modificar (1-52): ");
         semana = leer.nextInt();
         if (semana < 1 || semana > 52) {
             System.out.println("[!] Error: La semana debe estar entre 1 y 52.");
-        } 
-      
-       } while (semana < 1 || semana > 52);
+        }
+    } while (semana < 1 || semana > 52);
 
     String semanaStr = String.valueOf(semana);
     int fila = -1;
 
-    // Busqueda unica por Semana + Vaca dentro del propio arreglo
     for (int i = 0; i < 100; i++) {
-        if (registroAlimentacion[i][1] != null && registroAlimentacion[i][1].equals(codigo)
-                && registroAlimentacion[i][0] != null && registroAlimentacion[i][0].equals(semanaStr)) {
+        if (registroAlimentacion[i][0].equals(semanaStr)
+                && registroAlimentacion[i][1].equals(codigo)
+                && registroAlimentacion[i][2].equals(codigoAlimento)) {
             fila = i;
-            break;
         }
     }
 
     if (fila == -1) {
-        System.out.println("[!] No se encontro un registro para esa vaca y semana.");
+        System.out.println("[!] No se encontro un registro para esa vaca, alimento y semana.");
         return;
     }
 
-    // Mostrar los datos actuales antes de modificar
     System.out.println("-----------Datos Actuales-------------------------------------------------------");
     System.out.printf("%-15s %-15s %-15s %-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s%n",
             "SEMANA", "VACA", "ALIMENTO", "LUN", "MAR", "MIE", "JUE", "VIE", "SAB", "DOM", "TOTAL");
@@ -336,8 +348,9 @@ for (int i = 0; i < 100; i++) {
         } while (dia < 1 || dia > 7);
 
         int colDia = 2 + dia;
+        double valorAnterior = Double.parseDouble(registroAlimentacion[fila][colDia]);
 
-        double nuevoValor;
+        double nuevoValor = 0;
         do {
             System.out.print("Digite la NUEVA cantidad consumida ese dia: ");
             nuevoValor = leer.nextDouble();
@@ -347,9 +360,20 @@ for (int i = 0; i < 100; i++) {
             }
         } while (nuevoValor < 0);
 
+        double diferencia = nuevoValor - valorAnterior;
+        double inventarioCal = Double.parseDouble(GestionAlimentos.inventario[indiceAlimento][4]);
+
+        if (diferencia > 0 && inventarioCal < diferencia) {
+            System.out.println("[!] En su inventario de alimentacion no hay insumos suficientes");
+            System.out.println("para abarcar el aumento digitado, Inventario disponible: " + inventarioCal);
+            return;
+        }
+
+        inventarioCal = inventarioCal - diferencia;
+        GestionAlimentos.inventario[indiceAlimento][4] = String.valueOf(inventarioCal);
+
         registroAlimentacion[fila][colDia] = String.valueOf(nuevoValor);
 
-        // Recalcular el total semanal sumando las columnas de dia [3] a [9]
         double nuevoTotal = 0;
         for (int j = 3; j <= 9; j++) {
             nuevoTotal += Double.parseDouble(registroAlimentacion[fila][j]);
@@ -357,12 +381,19 @@ for (int i = 0; i < 100; i++) {
         registroAlimentacion[fila][10] = String.valueOf(nuevoTotal);
 
         System.out.println("[+] Dia actualizado. Total semanal recalculado: " + nuevoTotal);
+        System.out.println("[+] Inventario actualizado. Disponible: " + inventarioCal);
 
         leer.nextLine();
-        System.out.print("¿Desea modificar otro dia de este mismo registro? (S/N): ");
-        continuar = leer.nextLine();
+        continuar = "";
+        do {
+            System.out.print("¿Desea modificar otro dia de este mismo registro? (S/N): ");
+            continuar = leer.nextLine();
+            if (!continuar.equals("S") && !continuar.equals("N")) {
+                System.out.println("[!] Error: digite S o N");
+            }
+        } while (!continuar.equals("S") && !continuar.equals("N"));
 
-    } while (continuar.equalsIgnoreCase("S"));
+    } while (continuar.equals("S"));
 
     System.out.println("\n[+] Modificacion finalizada con exito.");
 }
