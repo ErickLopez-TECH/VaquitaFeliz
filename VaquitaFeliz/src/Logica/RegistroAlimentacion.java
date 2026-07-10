@@ -58,6 +58,10 @@ public class RegistroAlimentacion {
                
                 case 5: VaquitaFeliz.menuPrincipal();
                     break;
+                    
+                case 6:modificarAlimentacion();
+                    break;
+                    
             }
             
                 if(opcion <1 || opcion >5){
@@ -250,4 +254,101 @@ for (int i = 0; i < 100; i++) {
     System.out.println("-----------------------------------------------------------------");
 }
     
+      
+     public static void modificarAlimentacion() {
+    System.out.println("---------------------------------------");
+    System.out.println("|       MODIFICAR ALIMENTACION         |");
+    System.out.println("---------------------------------------");
+
+    System.out.print("Digite el codigo de la vaca: ");
+    String codigo = leer.next();
+
+    int semana = 0;
+    do {
+        System.out.print("Ingrese la semana a modificar (1-52): ");
+        semana = leer.nextInt();
+        if (semana < 1 || semana > 52) {
+            System.out.println("[!] Error: La semana debe estar entre 1 y 52.");
+        } 
+      
+       } while (semana < 1 || semana > 52);
+
+    String semanaStr = String.valueOf(semana);
+    int fila = -1;
+
+    // Busqueda unica por Semana + Vaca dentro del propio arreglo
+    for (int i = 0; i < 100; i++) {
+        if (registroAlimentacion[i][1] != null && registroAlimentacion[i][1].equals(codigo)
+                && registroAlimentacion[i][0] != null && registroAlimentacion[i][0].equals(semanaStr)) {
+            fila = i;
+            break;
+        }
+    }
+
+    if (fila == -1) {
+        System.out.println("[!] No se encontro un registro para esa vaca y semana.");
+        return;
+    }
+
+    // Mostrar los datos actuales antes de modificar
+    System.out.println("-----------Datos Actuales-------------------------------------------------------");
+    System.out.printf("%-15s %-15s %-15s %-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s%n",
+            "SEMANA", "VACA", "ALIMENTO", "LUN", "MAR", "MIE", "JUE", "VIE", "SAB", "DOM", "TOTAL");
+    System.out.printf("%-15s %-15s %-15s %-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s%n",
+            registroAlimentacion[fila][0], registroAlimentacion[fila][1], registroAlimentacion[fila][2],
+            registroAlimentacion[fila][3], registroAlimentacion[fila][4], registroAlimentacion[fila][5],
+            registroAlimentacion[fila][6], registroAlimentacion[fila][7], registroAlimentacion[fila][8],
+            registroAlimentacion[fila][9], registroAlimentacion[fila][10]);
+    System.out.println("----------------------------------------------------------------------------------");
+
+    String continuar;
+    do {
+        int dia = 0;
+        do {
+            System.out.println("Ingrese la opcion del (1-7) segun el dia que desea corregir:");
+            System.out.println("1. Lunes");
+            System.out.println("2. Martes");
+            System.out.println("3. Miercoles");
+            System.out.println("4. Jueves");
+            System.out.println("5. Viernes");
+            System.out.println("6. Sabado");
+            System.out.println("7. Domingo");
+            dia = leer.nextInt();
+            if (dia < 1 || dia > 7) {
+                System.out.println("[!] Error: El dia debe estar entre 1 y 7.");
+            }
+        } while (dia < 1 || dia > 7);
+
+        int colDia = 2 + dia;
+
+        double nuevoValor;
+        do {
+            System.out.print("Digite la NUEVA cantidad consumida ese dia: ");
+            nuevoValor = leer.nextDouble();
+
+            if (nuevoValor < 0) {
+                System.out.println("[!] Error: La cantidad no puede ser negativa");
+            }
+        } while (nuevoValor < 0);
+
+        registroAlimentacion[fila][colDia] = String.valueOf(nuevoValor);
+
+        // Recalcular el total semanal sumando las columnas de dia [3] a [9]
+        double nuevoTotal = 0;
+        for (int j = 3; j <= 9; j++) {
+            nuevoTotal += Double.parseDouble(registroAlimentacion[fila][j]);
+        }
+        registroAlimentacion[fila][10] = String.valueOf(nuevoTotal);
+
+        System.out.println("[+] Dia actualizado. Total semanal recalculado: " + nuevoTotal);
+
+        leer.nextLine();
+        System.out.print("¿Desea modificar otro dia de este mismo registro? (S/N): ");
+        continuar = leer.nextLine();
+
+    } while (continuar.equalsIgnoreCase("S"));
+
+    System.out.println("\n[+] Modificacion finalizada con exito.");
+}
+      
 }
