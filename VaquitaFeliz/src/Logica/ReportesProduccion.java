@@ -6,7 +6,7 @@ package Logica;
 
 /**
  *
- * @author triamus
+ * @author Erick
  */
 public class ReportesProduccion {
     public static void mostrarProduccion() {
@@ -16,10 +16,10 @@ public class ReportesProduccion {
 
     for (int i = 0; i < 100; i++) {
         if (RegistroProduccion.listaProduccion[i][0] != "") {
-            // Imprimimos los campos básicos
+        
             
             
-            // Si el nombre es corto, usamos dos tabs para compensar
+            
             System.out.print(RegistroProduccion.listaProduccion[i][2] + "\t");
             
             System.out.print(RegistroProduccion.listaProduccion[i][1] + "\t");

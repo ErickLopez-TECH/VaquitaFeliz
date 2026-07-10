@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author triamus
+ * @author hiro
  */
 public class GestionAlimentos {
     //--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
@@ -17,12 +17,15 @@ public class GestionAlimentos {
     
     //--cracion de la array 
 
-    static int[] codigoAlimento = new int [100];
-    static String[] nombreAlimento = new String [100];
-    static String[] tipoAlimento = new String [100];
-    static int[] coscoAlimento = new int [100];
-    static float[] cantidadAlimento = new float [100];
-    public static String[][] inventario = new String[50][5];
+    public static String[][] inventario = new String[100][5];
+    
+    static {
+        for (int i = 0; i < 100; i++) {
+            for (int j = 0; j < 5; j++) {
+                inventario[i][j] = "";
+            }
+        }
+    }
     
     public static void  gestionAlimentos(){
      int opcion = 0;
@@ -56,7 +59,7 @@ public class GestionAlimentos {
                     
                     break;
                     
-                case 5:
+                case 5:VaquitaFeliz.menuPrincipal();
                     
                     break;
                     
@@ -79,10 +82,10 @@ public class GestionAlimentos {
             System.out.println("-----------------------------------------");
             
     
-// 1. Buscar la primera posicion null (libre) en el arreglo
+// 1. Buscar la primera posicion "" (libre) en el arreglo
         int fila = -1;
-        for (int i = 0; i < 50; i++) {
-            if (inventario[i][0] == null) {
+        for (int i = 0; i < 100; i++) {
+            if (inventario[i][0] == "") {
                 fila = i;
                 break;
             }
@@ -99,9 +102,9 @@ public class GestionAlimentos {
         System.out.println("Digite el codigo del alimento: ");
         String codigo = leer.nextLine();
  
-        // Validacion de codigo duplicado (recorre solo posiciones no nulas)
-        for (int i = 0; i < 50; i++) {
-            if (inventario[i][0] != null && inventario[i][0].equals(codigo)) {
+        // Validacion de codigo duplicado (recorre solo posiciones no llenas)
+        for (int i = 0; i <100; i++) {
+            if (inventario[i][0] != "" && inventario[i][0].equals(codigo)) {
                 System.out.println("[!] Codigo existente en el registro");
                 return;
             }
@@ -112,8 +115,8 @@ public class GestionAlimentos {
         String nombre = leer.nextLine();
  
         // Validacion de nombre duplicado usando equals()
-        for (int i = 0; i < 50; i++) {
-            if (inventario[i][1] != null && inventario[i][1].equals(nombre)) {
+        for (int i = 0; i < 100; i++) {
+            if (inventario[i][1] != "" && inventario[i][1].equals(nombre)) {
                 System.out.println("[!] Nombre existente en el registro");
                 return;
             }
@@ -147,6 +150,7 @@ public class GestionAlimentos {
             }
         } while (cantidadDisponible < 0);
  
+        
         // Se guardan los datos en la fila libre encontrada
         inventario[fila][0] = codigo;
         inventario[fila][1] = nombre;
@@ -177,8 +181,8 @@ public class GestionAlimentos {
         String codigoBuscado = leer.nextLine();
  
         int encontrado = -1;
-        for (int i = 0; i < 50; i++) {
-            if (inventario[i][0] != null && inventario[i][0].equals(codigoBuscado)) {
+        for (int i = 0; i < 100; i++) {
+            if (inventario[i][0] != "" && inventario[i][0].equals(codigoBuscado)) {
                 encontrado = i;
                 break;
             }
@@ -246,8 +250,8 @@ public class GestionAlimentos {
         String codigoBuscado = leer.nextLine();
  
         int encontrado = -1;
-        for (int i = 0; i < 50; i++) {
-            if (inventario[i][0] != null && inventario[i][0].equals(codigoBuscado)) {
+        for (int i = 0; i < 100; i++) {
+            if (inventario[i][0] != "" && inventario[i][0].equals(codigoBuscado)) {
                 encontrado = i;
                 break;
             }
@@ -263,9 +267,9 @@ public class GestionAlimentos {
         System.out.println("Nombre: " + inventario[encontrado][1]);
         System.out.println("-----------------------------------\n");
  
-        // Se establecen todas las columnas de la fila en null, liberando el espacio
+        // Se establecen todas las columnas de la fila en vacio, liberando el espacio
         for (int j = 0; j < 5; j++) {
-            inventario[encontrado][j] = null;
+            inventario[encontrado][j] = "";
         }
  
         System.out.println("[+] Alimento eliminado con exito.");
@@ -281,27 +285,27 @@ public class GestionAlimentos {
      |   null) para mostrar unicamente los registros existentes.    |
       -----------------------------------------------------------*/
     public static void consultarAlimentos() {
- 
-        System.out.println("-----------------------------------------------------");
-        System.out.println("|              LISTA DE ALIMENTOS                   |");
-        System.out.println("-----------------------------------------------------");
-        System.out.println("INDICE\tCODIGO\tNOMBRE\tTIPO\tCOSTO/KG\tCANTIDAD");
-        System.out.println("-----------------------------------------------------");
- 
-        for (int i = 0; i < 50; i++) {
- 
-            // Filtro de nulos: solo se muestran los registros existentes
-            if (inventario[i][0] != null) {
- 
-                System.out.println("[" + (i + 1) + "]\t" +
-                        inventario[i][0] + "\t" +
-                        inventario[i][1] + "\t" +
-                        inventario[i][2] + "\t" +
-                        inventario[i][3] + "\t" +
-                        inventario[i][4]);
-            }
+    System.out.println("---------------------------------------------------------");
+    System.out.println("|                  LISTA DE ALIMENTOS                   |");
+    System.out.println("---------------------------------------------------------");
+    // Encabezado: Asegúrate de tener un \t por cada dato que imprimirás abajo
+    System.out.println("INDICE\tCODIGO\tNOMBRE\tTIPO\tCOSTO\tCANTIDAD/KG");
+    System.out.println("---------------------------------------------------------");
+
+    for (int i = 0; i < 100; i++) {
+        if (inventario[i][0] != "") {
+            // Imprimimos la fila. 
+            // Si tu arreglo tiene los datos en inventario[i][0] a [4],
+            // el print debe reflejar exactamente ese orden.
+            System.out.print((i + 1) + "\t");          // INDICE
+            System.out.print(inventario[i][0] + "\t"); // CODIGO
+            System.out.print(inventario[i][1] + "\t"); // NOMBRE
+            System.out.print(inventario[i][2] + "\t"); // TIPO
+            System.out.print(inventario[i][3] + "\t"); // COSTO
+            System.out.print(inventario[i][4] + "\t");  
+            System.out.println();
         }
-        System.out.println("-----------------------------------------------------");
     }
- 
+    System.out.println("---------------------------------------------------------");
+}
 }

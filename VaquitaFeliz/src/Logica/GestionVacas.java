@@ -8,15 +8,24 @@ import java.util.Scanner;
 
 /**
  *
- * @author hiro
+ * @author Erick
  */
 public class GestionVacas {
     
     //variables globales 
+    public static String[][] listaVacas = new String[100][5];
+    
+    static {
+        for (int i = 0; i < 100; i++) {
+            for (int j = 0; j < 5; j++) {
+                listaVacas[i][j] = "";
+            }
+        }
+    }
     
     private  static Scanner leer = new Scanner(System.in);
     
-    public static String[][] listaVacas = new String[100][5];
+   
     
   //  static int[] comparacionDatos = new int[100];
     
@@ -58,7 +67,7 @@ public class GestionVacas {
                     break;
                 case 4: consultarVacas();
                     break;
-                case 5: return;
+                case 5: VaquitaFeliz.menuPrincipal();
                     
             }
             
@@ -98,6 +107,11 @@ public static void registrarVacas(){
     System.out.println("Digite nombre de la vaca: ");
     String nombre = leer.nextLine();
      
+    if(nombre.equals("")){
+        System.out.println("[!] Espacios en blancos no admitidos");
+        return;
+    }
+    
     //comparacion con los datos ya guardados
     for (int i = 0; i < 100; i++) {
         if ((listaVacas[i][1].equals(nombre))) {
@@ -111,7 +125,10 @@ public static void registrarVacas(){
     System.out.println("Digite el codigo: ");
     String codigo = leer.nextLine();
      
-    
+    if(codigo.equals("")){
+        System.out.println("[!] Espacios en blancos no admitidos");
+        return;
+    }
     
     //int duplicado = 0;
      
@@ -139,6 +156,8 @@ public static void registrarVacas(){
     System.out.println("Digite la edad: ");
     int edad = leer.nextInt();
      
+  
+    
     System.out.println("");
     System.out.println("Digite el peso: ");
     double peso = leer.nextDouble();
