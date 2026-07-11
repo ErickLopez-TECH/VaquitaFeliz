@@ -48,7 +48,7 @@ public class RegistroAlimentacion {
                 case 1: registrarAlimentacion();
                     
                     break;
-                case 2: ;
+                case 2: modificarAlimentacion() ;
                     break;
                 case 3: borrarAlimentacion();
                     break;
