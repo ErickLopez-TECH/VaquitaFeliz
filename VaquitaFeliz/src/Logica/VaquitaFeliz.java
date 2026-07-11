@@ -37,7 +37,7 @@ public class VaquitaFeliz {
                 
             }
         }*/
-        
+        int salir = 0;
         do {            
             System.out.println("-----------------------------------------");
             System.out.println("|             VAQUITA FELIZ             |");
@@ -71,7 +71,7 @@ public class VaquitaFeliz {
             }
             
             //opciones por si desea salir, con el objetivo de evitar que el usaurio se salga por error
-            int salir = 0;
+            
             if(opciones ==6){
                 System.out.println("Estas seguro que deseas cerrar el sistema?");
                 System.out.println("1. Salir del sistema");
@@ -90,9 +90,9 @@ public class VaquitaFeliz {
                 System.out.println("-----------------------------------------");
                 System.out.println("|             OPCION INCORRECTA         |");
                 System.out.println("-----------------------------------------");
-                menuPrincipal();
+                
             }
-        } while (opciones !=6 );
+        } while ((opciones !=6) || (salir ==2) );
     }
     
     // Debes llamar a este método una vez al iniciar tu programa
