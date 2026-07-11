@@ -41,7 +41,8 @@ public class RegistroAlimentacion {
             System.out.println("3.Eliminar");
             System.out.println("4.Consultar");//listo
             System.out.println("5.Regresar");
-           
+            System.out.println("");
+            System.out.print("Opcion: ");
             opcion = leer.nextInt();
             
             switch (opcion) {

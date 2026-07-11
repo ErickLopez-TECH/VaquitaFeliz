@@ -50,6 +50,8 @@ public class VaquitaFeliz {
             System.out.println("4.Registro de produccion");
             System.out.println("5.Reportes produccion/Alimentacion");
             System.out.println("6.Cerrar Sistema");
+            System.out.println("");
+            System.out.print("Opcion: ");
             opciones = leer.nextInt();
             
             
@@ -65,9 +67,23 @@ public class VaquitaFeliz {
                     break;
                 case 5: MenuReportes.menuPrincipal();
                     break;
+                
             }
+            
+            //opciones por si desea salir, con el objetivo de evitar que el usaurio se salga por error
+            int salir = 0;
             if(opciones ==6){
-                System.out.print(0);
+                System.out.println("Estas seguro que deseas cerrar el sistema?");
+                System.out.println("1. Salir del sistema");
+                System.out.println("2. No deseo cerrar el sistema");
+                salir = leer.nextInt();
+            }
+            if(salir == 1){
+                System.out.println("[~]Gracias por confiar en nosotros!!");
+                System.exit(0);
+            }
+            if(salir == 2){
+                System.out.println("[~] Regresando a su funcionamiento habitual");
             }
             
             if((opciones >6) || (opciones <1)){
@@ -76,7 +92,7 @@ public class VaquitaFeliz {
                 System.out.println("-----------------------------------------");
                 menuPrincipal();
             }
-        } while (opciones <6 );
+        } while (opciones !=6 );
     }
     
     // Debes llamar a este método una vez al iniciar tu programa

@@ -14,6 +14,7 @@ public class MenuReportes {
     
     static Scanner leer = new Scanner(System.in);
     
+    //este mantiene el control de las dos lineas de reportes la de produccion y alimentacion
      public static void menuPrincipal(){
         int opciones= 0;
     
@@ -29,6 +30,8 @@ public class MenuReportes {
             System.out.println("1.Reportes Alimentacion");
             System.out.println("2.Reportes Produccion");
             System.out.println("3.Regresar");
+            System.out.println("");
+            System.out.print("Opcion: ");
             opciones = leer.nextInt();
             
             
@@ -48,9 +51,9 @@ public class MenuReportes {
                 System.out.println("-----------------------------------------");
                 System.out.println("|             OPCION INCORRECTA         |");
                 System.out.println("-----------------------------------------");
-                menuPrincipal();
+                
             }
-        } while ((opciones <1) || (opciones > 3));
+        } while (opciones != 3);
     }
     
    

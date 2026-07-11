@@ -21,7 +21,7 @@ public class RegistroProduccion {
  
     static String[][] listaProduccion = new String[100][11];
     
-    
+    //vaciar la array para eliminar null
     static {
         for (int i = 0; i < 100; i++) {
             for (int j = 0; j < 11; j++) {
@@ -31,6 +31,7 @@ public class RegistroProduccion {
     }
             
     
+    //CRUD Gestion de produccion
     public static void gestionProdu(){
         
         int opcion = 0;
@@ -48,6 +49,8 @@ public class RegistroProduccion {
             System.out.println("4.Consultar");//listo
             System.out.println("5.Buscar");//listo
             System.out.println("6.Regresar");
+            System.out.println("");
+            System.out.print("Opcion: ");
            
             opcion = leer.nextInt();
             
@@ -110,8 +113,11 @@ public static void registrarProduccion() {
     
     
     // 1. Traer del metodo buscarfila con parametros
+    //le decimos vea compare ese codigo con ese metodo de parametro
     int filaC = buscarFila(codigo);
     
+    
+    //las vacas que no producen no pueden registra produccion lechera
     for (int i = 0; i < 100; i++) {
             if (("Secas".equals(GestionVacas.listaVacas[i][4])) 
                     && GestionVacas.listaVacas[i][0].equals(codigo) ) {
@@ -124,7 +130,7 @@ public static void registrarProduccion() {
     
     
     
-    //valor qu edevuelve el metodo de fila
+    //valor qu edevuelve el metodo de fila si no existe ee codigo
     if (filaC == -1) {
         System.out.println("[!] ERROR: Vaca no registrada en el sistema.");
         return;//retornamos 
@@ -160,7 +166,8 @@ public static void registrarProduccion() {
         }
     } while (dia < 1 || dia > 7);
 
-    //guardar datos para la array columna
+    //guardar datos para la array columna y se suma 2 porque se gaurdan datos del primer dia 
+    //apartir de la array de produccion columna 3
      int colDia = 2 + dia; 
      
          //ocupamos traer ese dato hacia aqui nombre de la vaca
@@ -168,12 +175,13 @@ public static void registrarProduccion() {
 for (int i = 0; i < 100; i++) {
     if (GestionVacas.listaVacas[i][0].equals(codigo)) {
         nombreVaca = GestionVacas.listaVacas[i][1];
-        break; //ya lo encontramos
+        break; //para que buscra hasta el ultimo si ya lo encontramos
     }
 }
 
      // Convertimos semana(vienene en entero) a String para la comparación
     String semanaStr = String.valueOf(semana);
+    //inicializamos fuera de rango de los for
     int fila = -1;
     // 4. BUSCAR SI YA EXISTE REGISTRO
     for (int i = 0; i < 100; i++) {
@@ -186,27 +194,33 @@ for (int i = 0; i < 100; i++) {
     // 5. SI NO EXISTE, BUSCAR FILA VACÍA
     if (fila == -1) {
         for (int i = 0; i < 100; i++) {
+            //le decimos si usted es solo igual a vacio
             if (listaProduccion[i][0] == "") {
+                // en fila cambiamos de -1 hacia el dato de fila donde es vacio
                 fila = i;
                 listaProduccion[fila][0] = codigo;
                 listaProduccion[fila][1] = nombreVaca;
                 listaProduccion[fila][2] = semanaStr;
+                
+                //posiciones de la arayy de lunes a domingos y la llenamos con 0
                 for (int j = 3; j <= 10; j++) { 
                     listaProduccion[fila][j] = "0";
                 
                 }
-                break;
+                break;// cuando encuentre vacio se detiene ahi
             }
             
         }
     }
     
+    //basado al "0" guardado en eso de dias le decimos que si lo que hay en esa array
+    //es diferente a "0" qu epuede ser "1" o otros no permita corregir debido a requerimientos
         if (!listaProduccion[fila][colDia].equals("0")) {
     System.out.println("-------------------------------------------------------");
     System.out.println("[!] Ya existe produccion registrada para este dia.");
     System.out.println("Use la opcion 'Modificar' si desea corregir el valor.");
     System.out.println("-------------------------------------------------------");
-    return;
+    return;//retorne el programa por que el usuario quiere agregar algo u eno deberia
 }
     
     //usuario ingresa lo litros con ciertas resticciones
@@ -216,26 +230,13 @@ for (int i = 0; i < 100; i++) {
         leer.nextLine();
         nuevosLitros = leer.nextDouble();
         
+        //nada de evalores negativos para no afectar los valores del total
         if(nuevosLitros < 0){
             System.out.println("[!]Error: Los litros no pueden ser negativos");
             System.out.println("Valores negativos no permitidos");
             System.out.println("Intentas escribir"+"("+(nuevosLitros * -1)+")?");
         }
     } while (nuevosLitros <0);
-    
-
-    
-
-
- 
-    
-
-    
-
-
-
-  
-    
     
     
     //esta en String se parsea a double por ejemplo 2 en estring !=  2 int
@@ -264,11 +265,14 @@ public static void modificaProduccion() {
     System.out.println("---------------------------------------");
     System.out.println("|         EDICION DE PRODUCCION       |");
     System.out.println("---------------------------------------");
+   
     
     System.out.print("Digite el codigo de vaca a modificar: ");
     leer.nextLine(); 
     String buscaCodigo = leer.nextLine();
-
+    
+    
+    
     System.out.print("Digite la semana a modificar (1-52): ");
     String buscaSemana = leer.nextLine();
 

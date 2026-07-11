@@ -15,6 +15,7 @@ public class GestionVacas {
     //variables globales 
     public static String[][] listaVacas = new String[100][5];
     
+    //limpiar una vez al iniciar el programa en vacios
     static {
         for (int i = 0; i < 100; i++) {
             for (int j = 0; j < 5; j++) {
@@ -23,6 +24,7 @@ public class GestionVacas {
         }
     }
     
+    //leer es el control de entrada de datos
     private  static Scanner leer = new Scanner(System.in);
     
    
@@ -38,7 +40,7 @@ public class GestionVacas {
     
     
     
-    
+    //CRUD 4 funciones
     public static void gestionVacas(){
         
         int opcion = 0;
@@ -54,7 +56,8 @@ public class GestionVacas {
             System.out.println("3.Eliminar Vaca");
             System.out.println("4.Consultar Vaca");
             System.out.println("5.Regresar");
-           
+            System.out.println("");
+            System.out.print("Opcion: ");
             opcion = leer.nextInt();
             
             switch (opcion) {
@@ -80,10 +83,12 @@ public class GestionVacas {
         
         
     }
+    
+    //este es un metodo que devuelve un valor entreo y es la posicion que hay espacios
 public static int siguienteVaca() {
     int indice = -1;
     for (int i = 0; i < 100; i++) {
-        // Ahora acepta si es null O si es una cadena vacía
+       // si es una cadena vacía
         if ( listaVacas[i][0] == "") {
             indice = i;
             break;
@@ -94,7 +99,7 @@ public static int siguienteVaca() {
      
      
 
-
+//metodo de registrar vacas
 public static void registrarVacas(){
     int fila = siguienteVaca();
     
@@ -151,16 +156,36 @@ public static void registrarVacas(){
         return; // termina el proceso de una vez
     }*/
     // --------------------------------------------------------
-     
-    System.out.println("");
-    System.out.println("Digite la edad: ");
-    int edad = leer.nextInt();
-     
+    //Lo sproximos do miden los valores neagtivos o iguales qu e0 para no permitir ingresar
+     int edad;
+    do {        
+        System.out.println("");
+        System.out.println("Digite la edad");
+        edad = leer.nextInt();
+       
+        
+        if(edad <1){
+            System.out.println("[!] Valores neagtivos o iguales que 0 no aceptados");
+            System.out.println("");
+        }
+    } while (edad <1);
+    
+    
+     double peso;
+    do {        
+        System.out.println("");
+        System.out.println("Digite el peso");
+        peso = leer.nextDouble();
+        
+        
+        if(peso <1){
+            System.out.println("[!] Valores negativos o iguales que 0 no permitidos");
+            System.out.println("");
+        }
+    } while (peso <1);
   
     
-    System.out.println("");
-    System.out.println("Digite el peso: ");
-    double peso = leer.nextDouble();
+    
     
     //Inicializacion de variables
     int estadoProductivo = 0;
@@ -172,6 +197,7 @@ public static void registrarVacas(){
         leer.nextLine(); 
         System.out.println("");
       /*  System.out.println("Digite el estado productivo: ");*/
+      //el estado productivo se manejara por opciones 1, 2 o 3
         System.out.println("Digite el estado productivo al cual se muestra: ");
         System.out.println("1. Secas");
         System.out.println("2. Lactancia");
@@ -186,21 +212,25 @@ public static void registrarVacas(){
     } while (estadoProductivo !=1 && estadoProductivo !=2 && estadoProductivo !=3);
     
     
-     
+     //le diremos que si el usuario digito 1 al estadoVaca le asignaremos "secas"
     if(estadoProductivo == 1){
        estadoVaca   = "Secas";
       
     }
+    //le diremos que si el usuario digito 2 al estadoVaca le asignaremos "Lactancia"
      if(estadoProductivo == 2){
        estadoVaca   = "Lactancia";
       
     }
     
+     //le diremos que si el usuario digito 3 al estadoVaca le asignaremos libertad de escritura
      String otroEstado = "";
      if(estadoProductivo ==3){
          System.out.println("Ingrese otro tipo: ");
          leer.nextLine();
          otroEstado = leer.nextLine();
+         
+         // a la variable principal estadoVaca que va guardando los datos para insertarlos a la array
          estadoVaca = otroEstado;
      }
      
@@ -211,7 +241,7 @@ public static void registrarVacas(){
     
     
      
-   
+   //la array bidimensional asignando donde se gaurdara la informacion de cada dato
     listaVacas[fila][0] = codigo;
     listaVacas[fila][1] = nombre;
     listaVacas[fila][2] = String.valueOf(edad);
@@ -222,11 +252,11 @@ public static void registrarVacas(){
     System.out.println("\n[+] Vaca registrada con éxito.");
 }
 
-
+//metodo de modificar
 public static void modificarVacas() {
     int indice;
     
-   
+   // ingesa un valor entre 1 al 100 que son las filas totales
     do {           
         System.out.println("-----------------------------------------");
         System.out.println("|           Modificar Vacas             |");
@@ -238,12 +268,15 @@ public static void modificarVacas() {
         
     } while ((indice > 100) || (indice < 1));
     
-    
+    // el usuario empieza su conteo desde 1 y maquina desde 0 por eso se resta
     int fila = indice - 1;
     
-    // 2. Si la posición no está vacía, permite modificar
+    /* Si la posición no está vacía, permite modificar
+    ademanas de eso variable fila mantien el indice y busca esa fila en especifico
+    */
     if (listaVacas[fila][0] !="") {
         
+        //El usuario debe de saber que va a modificar por si cometio un error en indice
         System.out.println("-----------Datos Actuales--------------------------");
         System.out.println("Codigo\tNombre\tEdad\tPeso\tEstado Productivo");
         System.out.println("---------------------------------------------------");
@@ -258,13 +291,70 @@ public static void modificarVacas() {
         System.out.println("");
         
         
+        //Informacion al usuario para decidir si editar o no
+        System.out.println("Si deseas modificar algo de lo presentado digite:");
+        System.out.println("1. Editar");
+        System.out.println("2. No deseo editar");
+        System.out.println("");
+        int editar = 0;
+        
+        /*Inicalizar con la edad guardada, por si el usuario escribe 2 de no modificar
+        ue quede por defecto el valor guardado*/
+        int edad = Integer.parseInt(listaVacas[fila][2]);
+        
+        //ciclos anidados, el principal para repetir si no es 1 ni 2 y el secundario para la edad
+        do {   
+            System.out.println("");
+            System.out.println("Deseas editar la edad?");
+            editar = leer.nextInt();
+            System.out.println("");
+            
+            do {                
+                if (editar == 1) {
+                System.out.println("Digite la NUEVA edad: ");
+                edad = leer.nextInt();
+                System.out.println("");
+                
+                if(edad <1){
+                    System.out.println("[!] Numeros negativos o valores iguales a 0 no aceptados");
+                }
+            }
+            } while ((edad <1) && (editar == 1));
+            
+            if ((editar !=1) && (editar !=2)) {
+                System.out.println("[!] Vuelva a digitar entre 1 o 2");
+            }
+        } while ((editar !=1)&&(editar !=2));
+        
+        /*Inicalizar con el peso guardada, por si el usuario escribe 2 de no modificar
+        ue quede por defecto el valor guardado*/
+        double peso = Double.parseDouble(listaVacas[fila][3]);
+        /*ciclos principales el que si es 1 0 2 de editar y secundario de la edad <1*/
+        do {            
+            System.out.println("");
+            System.out.println("Deseas editar el peso?");
+            editar = leer.nextInt();
+            System.out.println("");
+            
+            do {                
+                if (editar == 1) {
+                System.out.println("Digite el nuevo peso: ");
+                peso = leer.nextDouble();
+                System.out.println("");
+                
+                if(peso <1){
+                    System.out.println("[!] Numeros negativos o valores iguales a 0 no aceptados");
+                }
+            }
+            } while ((peso <1) && (editar == 1));
+            
+            if ((editar !=1) && (editar !=2)) {
+                System.out.println("[!] Vuelva a digitar entre 1 o 2");
+            }
+        } while ((editar !=1)&&(editar !=2));
         
         
-        System.out.println("Digite la NUEVA edad: ");
-        int edad = leer.nextInt();
         
-        System.out.println("Digite el NUEVO peso: ");
-        double peso = leer.nextDouble();
         
         
         
@@ -323,7 +413,10 @@ public static void modificarVacas() {
         System.out.println("\n[!] La posición " + indice + " está vacía. No se puede modificar.");
     }
 }
+
+//metodo de eliminar vacas
 public static void eliminarVacas() {
+    //indice entre 1 al 100 por eso es el ciclo mas abajo
     int indice;
 
     do {
@@ -337,11 +430,14 @@ public static void eliminarVacas() {
         
     } while (indice > 100 || indice < 1); 
 
+    
+    //usauro cuenta desde 1 y maquina desde 0
     int fila = indice - 1;
 
-    
+    //varibale fila le da el dato de donde bsucar especificamente 
     if (listaVacas[fila][0] !="") { 
         
+        // le brindamos informacion simple
         System.out.println("\n--- Datos del Animal a Eliminar ---");
         System.out.println("Código: " + listaVacas[fila][0]);
         System.out.println("Nombre: " + listaVacas[fila][1]);
@@ -357,10 +453,13 @@ public static void eliminarVacas() {
         System.out.println("\n[+] ¡Vaca eliminada con éxito en el índice " + indice + "!");
 
     } else {
+        //de lo contrario si no es diferente de vacio le lanza este emnsaje informativo
         System.out.println("\n[!] La posición " + indice + " ya está vacía. No se puede eliminar.");
     }
 }
 
+
+//consultar informacion metodo
 public static void consultarVacas() {
     System.out.println("-----------------------------------------------------");
     System.out.println("|                LISTA DE VACAS                     |");
@@ -398,6 +497,7 @@ for (int i = 0; i < 100; i++) {
         
         if (listaVacas[i][0] != "") {
             
+            //maquina empieza desde 0, usuario 1
              numeroPosicion = i + 1; // Índice 1 no 0
             
             // Imprimimos la fila usando \t para separar cada columna

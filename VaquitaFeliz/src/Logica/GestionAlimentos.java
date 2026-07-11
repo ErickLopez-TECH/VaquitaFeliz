@@ -40,7 +40,8 @@ public class GestionAlimentos {
             System.out.println("3.Eliminar de alimentacion");
             System.out.println("4.Consultar de produccion");
             System.out.println("5.Regresar al menu principal");
-            
+            System.out.println("");
+            System.out.print("Opcion: ");
             opcion = leer.nextInt();
             
             switch (opcion) {
@@ -122,10 +123,53 @@ public class GestionAlimentos {
             }
         }
  
-        System.out.println("");
-        System.out.println("Digite el tipo de alimento: ");
-        String tipo = leer.nextLine();
+        
  
+        //Inicializacion de variables
+    int tipoAlimento = 0;
+    String otroTipo = "";
+    String tipo   = "";
+    
+    
+    do { 
+        
+        
+        System.out.println("");
+      /*  System.out.println("Digite el estado productivo: ");*/
+      //el estado productivo se manejara por opciones 1, 2,3,4
+        System.out.println("Digite el tipo de alimento cual se muestra: ");
+        System.out.println("1. Pasto");
+        System.out.println("2. Concentrado");
+        System.out.println("3. Suplemento");
+        System.out.println("4.Otro tipo");
+        tipoAlimento= leer.nextInt();
+
+
+        if((tipoAlimento != 1) && (tipoAlimento !=2) && (tipoAlimento !=3) && (tipoAlimento !=4)){
+        System.out.println("\n[!] Opcion incorrecta, vuelva a intentar");
+        }
+    
+    } while ((tipoAlimento != 1) && (tipoAlimento !=2) && (tipoAlimento !=3) && (tipoAlimento !=4));
+        
+    leer.nextLine();
+    if(tipoAlimento == 1){
+       tipo   = "Pasto";
+    }
+    
+    if(tipoAlimento == 2){
+        tipo = "Concent";
+    }
+    
+    if(tipoAlimento == 3){
+        tipo = "Suplemento";
+    }
+    
+    if(tipoAlimento == 4){
+        System.out.println("Digite el tipo de alimento: ");
+        otroTipo = leer.nextLine();
+        tipo = otroTipo;
+    }
+        
         // Validacion: el costo por Kg debe ser un valor positivo
         int costoPorKg;
         do {
