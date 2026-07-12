@@ -8,8 +8,6 @@ package Logica;
  *
  * @author Erick
  */
-
-//Crud de reportes produccion
 public class ReportesProduccion {
     public static void mostrarProduccion() {
     System.out.println("-----------------------");
@@ -21,14 +19,13 @@ public class ReportesProduccion {
         
             
             
-            //cada system me muestra un dato guardadoapartir de cata for
+            
             System.out.print(RegistroProduccion.listaProduccion[i][2] + "\t");
             
             System.out.print(RegistroProduccion.listaProduccion[i][1] + "\t");
             
             System.out.print(RegistroProduccion.listaProduccion[i][10] + "\t");
             
-            System.out.println("");
             
         }
     }

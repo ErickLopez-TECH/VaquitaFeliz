@@ -6,13 +6,12 @@ import java.util.Scanner;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
+//--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
 /**
  *
  * @author hiro
  */
-public class GestionAlimentos {
-    //--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
+public class GestionAlimentos { 
     private static Scanner leer = new Scanner(System.in);
     
     //--cracion de la array 
@@ -40,8 +39,7 @@ public class GestionAlimentos {
             System.out.println("3.Eliminar de alimentacion");
             System.out.println("4.Consultar de produccion");
             System.out.println("5.Regresar al menu principal");
-            System.out.println("");
-            System.out.print("Opcion: ");
+            
             opcion = leer.nextInt();
             
             switch (opcion) {
@@ -105,19 +103,51 @@ public class GestionAlimentos {
  
         // Validacion de codigo duplicado (recorre solo posiciones no llenas)
         for (int i = 0; i <100; i++) {
-            if (!inventario[i][0].equals("") && inventario[i][0].equals(codigo)) {
+            if (inventario[i][0] != "" && inventario[i][0].equals(codigo)) {
                 System.out.println("[!] Codigo existente en el registro");
                 return;
             }
         }
- 
+        
+        int opcionTipo = 0;
+        String tipo = "";
+        
+        do{System.out.println("Digite el tipo de alimento: ");
+        System.out.println("1. Concentrado");
+        System.out.println("2. Pastos");
+        System.out.println("3. Otro");
+        opcionTipo = leer.nextInt();
+
+        if (opcionTipo != 1 && opcionTipo != 2 && opcionTipo != 3) {
+            System.out.println("[!] Opcion incorrecta, vuelva a intentar");
+        }
+
+    } while (opcionTipo != 1 && opcionTipo != 2 && opcionTipo != 3);
+
+    if (opcionTipo == 1) {
+        tipo = "Concentrado";
+    }
+    if (opcionTipo == 2) {
+        tipo = "Pastos";
+    }
+
+    String otroTipo = "";
+    if (opcionTipo == 3) {
+        System.out.println("Ingrese otro tipo: ");
+        leer.nextLine();
+        otroTipo = leer.nextLine();
+        tipo = otroTipo;
+            
+        }
+        
+ //-----------------------------------------------------
         System.out.println("");
         System.out.println("Digite el nombre del alimento: ");
         String nombre = leer.nextLine();
  
         // Validacion de nombre duplicado usando equals()
         for (int i = 0; i < 100; i++) {
-            if (!inventario[i][1].equals("") && inventario[i][1].equals(nombre)) {
+            if (inventario[i][1] != "" && inventario[i][1].equals(nombre)) {
                 System.out.println("[!] Nombre existente en el registro");
                 return;
             }
@@ -125,51 +155,6 @@ public class GestionAlimentos {
  
         
  
-        //Inicializacion de variables
-    int tipoAlimento = 0;
-    String otroTipo = "";
-    String tipo   = "";
-    
-    
-    do { 
-        
-        
-        System.out.println("");
-      /*  System.out.println("Digite el estado productivo: ");*/
-      //el estado productivo se manejara por opciones 1, 2,3,4
-        System.out.println("Digite el tipo de alimento cual se muestra: ");
-        System.out.println("1. Pasto");
-        System.out.println("2. Concentrado");
-        System.out.println("3. Suplemento");
-        System.out.println("4.Otro tipo");
-        tipoAlimento= leer.nextInt();
-
-
-        if((tipoAlimento != 1) && (tipoAlimento !=2) && (tipoAlimento !=3) && (tipoAlimento !=4)){
-        System.out.println("\n[!] Opcion incorrecta, vuelva a intentar");
-        }
-    
-    } while ((tipoAlimento != 1) && (tipoAlimento !=2) && (tipoAlimento !=3) && (tipoAlimento !=4));
-        
-    leer.nextLine();
-    if(tipoAlimento == 1){
-       tipo   = "Pasto";
-    }
-    
-    if(tipoAlimento == 2){
-        tipo = "Concent";
-    }
-    
-    if(tipoAlimento == 3){
-        tipo = "Suplemento";
-    }
-    
-    if(tipoAlimento == 4){
-        System.out.println("Digite el tipo de alimento: ");
-        otroTipo = leer.nextLine();
-        tipo = otroTipo;
-    }
-        
         // Validacion: el costo por Kg debe ser un valor positivo
         int costoPorKg;
         do {
@@ -339,8 +324,7 @@ public class GestionAlimentos {
     for (int i = 0; i < 100; i++) {
         if (inventario[i][0] != "") {
             // Imprimimos la fila. 
-            // Si tu arreglo tiene los datos en inventario[i][0] a [4],
-            // el print debe reflejar exactamente ese orden.
+           
             System.out.print((i + 1) + "\t");          // INDICE
             System.out.print(inventario[i][0] + "\t"); // CODIGO
             System.out.print(inventario[i][1] + "\t"); // NOMBRE
