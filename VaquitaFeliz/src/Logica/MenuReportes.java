@@ -37,7 +37,7 @@ public class MenuReportes {
             
             //Estructura de control y decision
             switch(opciones){
-                case 1:;
+                case 1:ReportesAlimentacion.reportesInsumos();
                     break;
                 case 2: ReportesProduccion.mostrarProduccion();
                     break;
