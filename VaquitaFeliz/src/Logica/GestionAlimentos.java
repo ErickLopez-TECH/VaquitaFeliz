@@ -30,7 +30,7 @@ public class GestionAlimentos {
      int opcion = 0;
         do {            
             System.out.println("-----------------------------------------");
-            System.out.println("|          GESTION DE ALIMENTOS         |");
+            System.out.println("|          INGRESO DE ALIMENTOS         |");
             System.out.println("-----------------------------------------");
             System.out.println("Ingrese una opcion(1-5), luego presione");
             System.out.println("la tecla enter.");
@@ -115,7 +115,8 @@ public class GestionAlimentos {
         do{System.out.println("Digite el tipo de alimento: ");
         System.out.println("1. Concentrado");
         System.out.println("2. Pastos");
-        System.out.println("3. Otro");
+        System.out.println("3. Suplementos");
+        System.out.println("4. Otro");
         opcionTipo = leer.nextInt();
 
         if (opcionTipo != 1 && opcionTipo != 2 && opcionTipo != 3) {
@@ -125,14 +126,17 @@ public class GestionAlimentos {
     } while (opcionTipo != 1 && opcionTipo != 2 && opcionTipo != 3);
 
     if (opcionTipo == 1) {
-        tipo = "Concentrado";
+        tipo = "Concent";
     }
     if (opcionTipo == 2) {
         tipo = "Pastos";
     }
 
+    if(opcionTipo == 3){
+        tipo = "Suplem";
+    }
     String otroTipo = "";
-    if (opcionTipo == 3) {
+    if (opcionTipo == 4) {
         System.out.println("Ingrese otro tipo: ");
         leer.nextLine();
         otroTipo = leer.nextLine();
@@ -142,6 +146,7 @@ public class GestionAlimentos {
         
  //-----------------------------------------------------
         System.out.println("");
+        leer.nextLine();
         System.out.println("Digite el nombre del alimento: ");
         String nombre = leer.nextLine();
  
