@@ -103,7 +103,7 @@ public class GestionAlimentos {
  
         // Validacion de codigo duplicado (recorre solo posiciones no llenas)
         for (int i = 0; i <100; i++) {
-            if (inventario[i][0] != "" && inventario[i][0].equals(codigo)) {
+            if ((inventario[i][0] != "") && (inventario[i][0].equals(codigo))) {
                 System.out.println("[!] Codigo existente en el registro");
                 return;
             }
@@ -119,7 +119,7 @@ public class GestionAlimentos {
         System.out.println("4. Otro");
         opcionTipo = leer.nextInt();
 
-        if (opcionTipo != 1 && opcionTipo != 2 && opcionTipo != 3) {
+        if ((opcionTipo != 1 )&& (opcionTipo != 2) && (opcionTipo != 3)) {
             System.out.println("[!] Opcion incorrecta, vuelva a intentar");
         }
 
@@ -152,7 +152,7 @@ public class GestionAlimentos {
  
         // Validacion de nombre duplicado usando equals()
         for (int i = 0; i < 100; i++) {
-            if (inventario[i][1].equals(nombre)) {
+            if ((inventario[i][1] != "") && (inventario[i][1].equals(nombre))) {
                 System.out.println("[!] Nombre existente en el registro");
                 return;
             }
@@ -216,7 +216,7 @@ public class GestionAlimentos {
  
         int encontrado = -1;
         for (int i = 0; i < 100; i++) {
-            if (inventario[i][0] != "" && inventario[i][0].equals(codigoBuscado)) {
+            if ((inventario[i][0] != "" )&& (inventario[i][0].equals(codigoBuscado))) {
                 encontrado = i;
                 break;
             }
@@ -243,8 +243,11 @@ public class GestionAlimentos {
             System.out.println("Digite el NUEVO costo por Kg: ");
             nuevoCosto = leer.nextInt();
  
-            if (nuevoCosto <= 0) {
+            if (nuevoCosto < 0) {
                 System.out.println("[!] Error: El costo debe ser un valor positivo");
+            }
+            if(nuevoCosto == 0){
+                System.out.println("[!] Error: El valor no puede ser 0");
             }
         } while (nuevoCosto <= 0);
  
@@ -256,7 +259,10 @@ public class GestionAlimentos {
             if (nuevaCantidad < 0) {
                 System.out.println("[!] Error: La cantidad no puede ser negativa");
             }
-        } while (nuevaCantidad < 0);
+            if(nuevaCantidad == 0){
+                System.out.println("[!] Error: El valor no puede ser 0");
+            }
+        } while (nuevaCantidad <=0);
  
         inventario[encontrado][3] = String.valueOf(nuevoCosto);
         inventario[encontrado][4] = String.valueOf(nuevaCantidad);

@@ -209,7 +209,7 @@ public static void registrarVacas(){
         System.out.println("\n[!] Opcion incorrecta, vuelva a intentar");
         }
     
-    } while (estadoProductivo !=1 && estadoProductivo !=2 && estadoProductivo !=3);
+    } while ((estadoProductivo !=1 )&&( estadoProductivo !=2) && (estadoProductivo !=3));
     
     
      //le diremos que si el usuario digito 1 al estadoVaca le asignaremos "secas"
@@ -374,11 +374,11 @@ public static void modificarVacas() {
         estadoProductivo = leer.nextInt();
 
 
-        if(estadoProductivo != 1 && estadoProductivo !=2 && estadoProductivo !=3){
+        if((estadoProductivo != 1) && (estadoProductivo !=2) && (estadoProductivo !=3)){
         System.out.println("\n[!] Opcion incorrecta, vuelva a intentar");
         }
     
-    } while (estadoProductivo !=1 && estadoProductivo !=2 && estadoProductivo !=3);
+    } while ((estadoProductivo !=1) && (estadoProductivo !=2 )&& (estadoProductivo !=3));
     
     
      
