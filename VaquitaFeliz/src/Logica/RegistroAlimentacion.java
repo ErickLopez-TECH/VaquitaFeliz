@@ -303,7 +303,7 @@ for (int i = 0; i < 100; i++) {
         System.out.println("[!] No se encontro un registro para esa vaca, alimento y semana.");
         return;
     }
-
+/*
     System.out.println("-----------Datos Actuales-------------------------------------------------------");
     System.out.printf("%-15s %-15s %-15s %-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s%n",
             "SEMANA", "VACA", "ALIMENTO", "LUN", "MAR", "MIE", "JUE", "VIE", "SAB", "DOM", "TOTAL");
@@ -313,6 +313,23 @@ for (int i = 0; i < 100; i++) {
             registroAlimentacion[fila][6], registroAlimentacion[fila][7], registroAlimentacion[fila][8],
             registroAlimentacion[fila][9], registroAlimentacion[fila][10]);
     System.out.println("----------------------------------------------------------------------------------");
+*/
+
+System.out.println("-----------Datos Actuales-------------------------------------------------------");
+System.out.println("SEMANA\tVACA\tALIMENTO\tLUN\tMAR\tMIE\tJUE\tVIE\tSAB\tDOM\tTOTAL");
+System.out.println(registroAlimentacion[fila][0] + "\t" +
+        registroAlimentacion[fila][1] + "\t" +
+        registroAlimentacion[fila][2] + "\t" +
+        registroAlimentacion[fila][3] + "\t" +
+        registroAlimentacion[fila][4] + "\t" +
+        registroAlimentacion[fila][5] + "\t" +
+        registroAlimentacion[fila][6] + "\t" +
+        registroAlimentacion[fila][7] + "\t" +
+        registroAlimentacion[fila][8] + "\t" +
+        registroAlimentacion[fila][9] + "\t" +
+        registroAlimentacion[fila][10]);
+System.out.println("----------------------------------------------------------------------------------");
+
 
     String continuar;
     do {

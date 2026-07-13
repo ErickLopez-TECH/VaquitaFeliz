@@ -108,39 +108,7 @@ public class GestionAlimentos {
                 return;
             }
         }
-        
-        int opcionTipo = 0;
-        String tipo = "";
-        
-        do{System.out.println("Digite el tipo de alimento: ");
-        System.out.println("1. Concentrado");
-        System.out.println("2. Pastos");
-        System.out.println("3. Otro");
-        opcionTipo = leer.nextInt();
-
-        if (opcionTipo != 1 && opcionTipo != 2 && opcionTipo != 3) {
-            System.out.println("[!] Opcion incorrecta, vuelva a intentar");
-        }
-
-    } while (opcionTipo != 1 && opcionTipo != 2 && opcionTipo != 3);
-
-    if (opcionTipo == 1) {
-        tipo = "Concentrado";
-    }
-    if (opcionTipo == 2) {
-        tipo = "Pastos";
-    }
-
-    String otroTipo = "";
-    if (opcionTipo == 3) {
-        System.out.println("Ingrese otro tipo: ");
-        leer.nextLine();
-        otroTipo = leer.nextLine();
-        tipo = otroTipo;
-            
-        }
-        
- //-----------------------------------------------------
+ 
         System.out.println("");
         System.out.println("Digite el nombre del alimento: ");
         String nombre = leer.nextLine();
@@ -153,7 +121,9 @@ public class GestionAlimentos {
             }
         }
  
-        
+        System.out.println("");
+        System.out.println("Digite el tipo de alimento: ");
+        String tipo = leer.nextLine();
  
         // Validacion: el costo por Kg debe ser un valor positivo
         int costoPorKg;
