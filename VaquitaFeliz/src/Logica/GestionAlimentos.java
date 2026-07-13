@@ -152,7 +152,7 @@ public class GestionAlimentos {
  
         // Validacion de nombre duplicado usando equals()
         for (int i = 0; i < 100; i++) {
-            if (inventario[i][1] != "" && inventario[i][1].equals(nombre)) {
+            if (inventario[i][1].equals(nombre)) {
                 System.out.println("[!] Nombre existente en el registro");
                 return;
             }
