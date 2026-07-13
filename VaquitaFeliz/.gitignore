@@ -2,3 +2,9 @@
 **/nbproject/private/
  build/ dist/
 *.properties
+# Archivos generados por NetBeans y Ant
+build/
+ dist/
+ nbproject/private/
+*.properties
+
