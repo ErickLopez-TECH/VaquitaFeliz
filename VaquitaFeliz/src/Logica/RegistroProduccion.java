@@ -185,7 +185,9 @@ for (int i = 0; i < 100; i++) {
     int fila = -1;
     // 4. BUSCAR SI YA EXISTE REGISTRO
     for (int i = 0; i < 100; i++) {
-        if (listaProduccion[i][0] != "" && listaProduccion[i][0].equals(codigo) && listaProduccion[i][2].equals(semanaStr)) {
+        if ((listaProduccion[i][0] != "")
+                && (listaProduccion[i][0].equals(codigo))
+                && (listaProduccion[i][2].equals(semanaStr))) {
             fila = i;
             break;
         }
@@ -280,7 +282,8 @@ public static void modificaProduccion() {
 
     for (int i = 0; i < 100; i++) {
         // Buscamos coincidencia de código y semana
-        if (listaProduccion[i][0].equals(buscaCodigo) && listaProduccion[i][2].equals(buscaSemana)) {
+        if ((listaProduccion[i][0].equals(buscaCodigo)) && 
+                (listaProduccion[i][2].equals(buscaSemana))) {
             encontrado = 1;
             
             int semana;

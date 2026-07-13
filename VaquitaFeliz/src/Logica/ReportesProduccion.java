@@ -25,7 +25,7 @@ public class ReportesProduccion {
             System.out.print(RegistroProduccion.listaProduccion[i][1] + "\t");
             
             System.out.print(RegistroProduccion.listaProduccion[i][10] + "\t");
-            
+            System.out.println("");
             
         }
     }

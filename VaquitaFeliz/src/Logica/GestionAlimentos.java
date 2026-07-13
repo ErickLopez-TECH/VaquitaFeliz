@@ -30,7 +30,7 @@ public class GestionAlimentos {
      int opcion = 0;
         do {            
             System.out.println("-----------------------------------------");
-            System.out.println("|          GESTION DE ALIMENTOS         |");
+            System.out.println("|          INGRESO DE ALIMENTOS         |");
             System.out.println("-----------------------------------------");
             System.out.println("Ingrese una opcion(1-5), luego presione");
             System.out.println("la tecla enter.");
@@ -103,27 +103,64 @@ public class GestionAlimentos {
  
         // Validacion de codigo duplicado (recorre solo posiciones no llenas)
         for (int i = 0; i <100; i++) {
-            if (inventario[i][0] != "" && inventario[i][0].equals(codigo)) {
+            if ((inventario[i][0] != "") && (inventario[i][0].equals(codigo))) {
                 System.out.println("[!] Codigo existente en el registro");
                 return;
             }
         }
- 
+
+        
+        int opcionTipo = 0;
+        String tipo = "";
+        
+        do{System.out.println("Digite el tipo de alimento: ");
+        System.out.println("1. Concentrado");
+        System.out.println("2. Pastos");
+        System.out.println("3. Suplementos");
+        System.out.println("4. Otro");
+        opcionTipo = leer.nextInt();
+
+        if ((opcionTipo != 1 )&& (opcionTipo != 2) && (opcionTipo != 3)) {
+            System.out.println("[!] Opcion incorrecta, vuelva a intentar");
+        }
+
+    } while (opcionTipo != 1 && opcionTipo != 2 && opcionTipo != 3);
+
+    if (opcionTipo == 1) {
+        tipo = "Concent";
+    }
+    if (opcionTipo == 2) {
+        tipo = "Pastos";
+    }
+
+    if(opcionTipo == 3){
+        tipo = "Suplem";
+    }
+    String otroTipo = "";
+    if (opcionTipo == 4) {
+        System.out.println("Ingrese otro tipo: ");
+        leer.nextLine();
+        otroTipo = leer.nextLine();
+        tipo = otroTipo;
+            
+        }
+        
+ //-----------------------------------------------------
+
         System.out.println("");
+        leer.nextLine();
         System.out.println("Digite el nombre del alimento: ");
         String nombre = leer.nextLine();
  
         // Validacion de nombre duplicado usando equals()
         for (int i = 0; i < 100; i++) {
-            if (inventario[i][1] != "" && inventario[i][1].equals(nombre)) {
+            if ((inventario[i][1] != "") && (inventario[i][1].equals(nombre))) {
                 System.out.println("[!] Nombre existente en el registro");
                 return;
             }
         }
  
-        System.out.println("");
-        System.out.println("Digite el tipo de alimento: ");
-        String tipo = leer.nextLine();
+       
  
         // Validacion: el costo por Kg debe ser un valor positivo
         int costoPorKg;
@@ -181,7 +218,7 @@ public class GestionAlimentos {
  
         int encontrado = -1;
         for (int i = 0; i < 100; i++) {
-            if (inventario[i][0] != "" && inventario[i][0].equals(codigoBuscado)) {
+            if ((inventario[i][0] != "" )&& (inventario[i][0].equals(codigoBuscado))) {
                 encontrado = i;
                 break;
             }
@@ -208,8 +245,11 @@ public class GestionAlimentos {
             System.out.println("Digite el NUEVO costo por Kg: ");
             nuevoCosto = leer.nextInt();
  
-            if (nuevoCosto <= 0) {
+            if (nuevoCosto < 0) {
                 System.out.println("[!] Error: El costo debe ser un valor positivo");
+            }
+            if(nuevoCosto == 0){
+                System.out.println("[!] Error: El valor no puede ser 0");
             }
         } while (nuevoCosto <= 0);
  
@@ -221,7 +261,10 @@ public class GestionAlimentos {
             if (nuevaCantidad < 0) {
                 System.out.println("[!] Error: La cantidad no puede ser negativa");
             }
-        } while (nuevaCantidad < 0);
+            if(nuevaCantidad == 0){
+                System.out.println("[!] Error: El valor no puede ser 0");
+            }
+        } while (nuevaCantidad <=0);
  
         inventario[encontrado][3] = String.valueOf(nuevoCosto);
         inventario[encontrado][4] = String.valueOf(nuevaCantidad);

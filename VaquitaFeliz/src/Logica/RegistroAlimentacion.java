@@ -60,8 +60,7 @@ public class RegistroAlimentacion {
                 case 5: VaquitaFeliz.menuPrincipal();
                     break;
                     
-                case 6:modificarAlimentacion();
-                    break;
+                
                     
             }
             
