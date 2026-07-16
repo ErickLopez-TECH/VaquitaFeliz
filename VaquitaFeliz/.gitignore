@@ -1,0 +1,19 @@
+
+# Archivos generados por NetBeans y Ant Carpetas de configuración de NetBeans
+nbproject/private/
+build/
+dist/
+nbbuild/
+nbdist/
+.nb-gradle/
+
+#Archivos temporesl del sistema
+.DS_Store
+Thumbs.db
+# Archivos de compilación de Java
+*.class
+# Carpetas de IDEs
+.idea/ .vscode/ *.swp
+# Archivos temporales del sistema
+.DS_Store
+Thumbs.db
